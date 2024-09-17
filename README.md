@@ -2,7 +2,7 @@
 
 Android app built for CS360 
 
-###To run the project, navigate to the directory and run the following:
+### To run the project, navigate to the directory and run the following:
 
 - cd CS360_Barter_App
 - npx expo start
