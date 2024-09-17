@@ -3,7 +3,7 @@
 Android app built for CS360 
 
 Requirements:
-- Setup Android Studio which adds the Android SDK [https://docs.expo.dev/workflow/android-studio-emulator/](url)
+- Setup Android Studio which adds the Android SDK https://docs.expo.dev/workflow/android-studio-emulator/
 
 ### To run the project, navigate to the directory and run the following:
 
