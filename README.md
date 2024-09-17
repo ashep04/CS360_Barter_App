@@ -2,9 +2,10 @@
 
 Android app built for CS360 
 
-### To run the project, navigate to the directory and run the following:
+Requirements:
+- Setup Android Studio which adds the Android SDK [https://docs.expo.dev/workflow/android-studio-emulator/](url)
 
-- Download the Android SDK [https://developer.android.com/tools/releases/platform-tools#downloads](url)
+### To run the project, navigate to the directory and run the following:
 
 - cd CS360_Barter_App
 - npx expo start
