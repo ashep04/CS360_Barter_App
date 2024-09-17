@@ -4,6 +4,8 @@ Android app built for CS360
 
 ### To run the project, navigate to the directory and run the following:
 
+- Download the Android SDK [https://developer.android.com/tools/releases/platform-tools#downloads](url)
+
 - cd CS360_Barter_App
 - npx expo start
   
