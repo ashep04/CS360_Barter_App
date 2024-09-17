@@ -11,7 +11,6 @@ Requirements:
 
 ### To run the project, navigate to the directory and run the following:
 
-- cd CS360_Barter_App
 - npx expo start
   
 ### Then one of the following:
