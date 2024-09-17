@@ -20,4 +20,4 @@ Requirements:
 - npm run web
 
 ### Development
-- Under the app directory is the .tsx files to develop and make the app
+- 
