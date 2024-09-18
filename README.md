@@ -19,4 +19,4 @@ Requirements:
 - npm run web
 
 ### Development
-- 
+- For Databases, SQLite looks good, but we should probably talk with another group if we wanted to work with one.
