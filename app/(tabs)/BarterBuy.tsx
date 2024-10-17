@@ -1,5 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { StyleSheet, Image, Platform } from 'react-native';
+import * as React from 'react'
 
 import { Collapsible } from '@/components/Collapsible';
 import { ExternalLink } from '@/components/ExternalLink';
@@ -7,15 +8,46 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
+import {
+  View,
+  TextInput,
+  Text,
+  ViewStyle,
+  TextStyle,
+  TextInputProps,
+} from 'react-native'
+import { FieldError } from 'react-hook-form'
+interface Props extends TextInputProps {
+  name: string
+  label?: string
+  labelStyle?: TextStyle
+  error?: FieldError | undefined
+}
+
+
 export default function TabTwoScreen() {
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
       headerImage={<Ionicons size={310} name="code-slash" style={styles.headerImage} />}>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
+        <ThemedText type="title">BarterBuy</ThemedText>
       </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
+      
+      {/* <View style={styles.container}>
+        {label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
+        <TextInput
+          autoCapitalize="none"
+          ref={ref}
+          style={[
+            styles.inputContainer,
+            { borderColor: error ? '#fc6d47' : '#c0cbd3' },
+          ]}
+          {...inputProps}
+        />
+        <Text style={styles.textError}>{error && error.message}</Text>
+      </View> */}
+      {/* <ThemedText>This app includes example code to help you get started.</ThemedText>
       <Collapsible title="File-based routing">
         <ThemedText>
           This app has two screens:{' '}
@@ -83,7 +115,7 @@ export default function TabTwoScreen() {
             </ThemedText>
           ),
         })}
-      </Collapsible>
+      </Collapsible> */}
     </ParallaxScrollView>
   );
 }
