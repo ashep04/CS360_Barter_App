@@ -2,7 +2,7 @@
 
 Android app built for CS360 
 
-Requirements:
+Requirements for emulator:
 - Setup Android Studio and emulator https://docs.expo.dev/workflow/android-studio-emulator/
     This allows us to emulate any phone and get the **Android** **SDK** setup.
 - Add to your PATH environment variable the platform-tools folder in ~/AppData/Local/Android/Sdk/platform-tools
@@ -10,13 +10,10 @@ Requirements:
 - Make sure the command adb and adb --version works in powershell on windows.
 
 ### To run the project, navigate to the directory and run the following:
-
+- npm i
 - npx expo start
   
 ### Then one of the following:
 - npm run android
 - npm run ios # you need to use macOS to build the iOS project - use the Expo app if you need to do iOS development without a Mac
 - npm run web
-
-### Development
-- For Databases, SQLite looks good, but we should probably talk with another group if we wanted to work with one.
