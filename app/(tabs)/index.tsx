@@ -87,25 +87,6 @@ import { Collapsible } from '@/components/Collapsible';
 
 
 export default function HomeScreen() {
-  const [db, setDb] = useState<SQLite.SQLiteDatabase | null>(null);
-
-  useEffect(() => {
-    // Open the database asynchronously
-    const openDatabase = async () => {
-      const database = await SQLite.openDatabaseSync('test.db');
-      setDb(database);
-
-    //   // Create table and insert test record
-    //   database.transaction((tx) => { does not work
-    //     tx.executeSql(
-    //       'CREATE TABLE IF NOT EXISTS names (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT);'
-    //     );
-    //     tx.executeSql('INSERT INTO names (name) VALUES (?);', ['Test Name']);
-    //   });
-    };
-
-    openDatabase();
-  }, []);
 
   return (
     <View style={styles.container}>
