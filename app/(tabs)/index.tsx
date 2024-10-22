@@ -89,15 +89,23 @@ import { Collapsible } from '@/components/Collapsible';
 export default function HomeScreen() {
 
   return (
-    <View style={styles.container}>
-       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Barter Buddy!</ThemedText>
-       </ThemedView>
 
+    <View style={styles.container}>
+
+      <View style={styles.titleContainer}>
+        <ThemedText style={styles.titleText}>Barter Buddy!</ThemedText>
+      </View>
+
+
+    <View style={styles.footer}>
+    <View style={styles.stepContainer}>
        <Collapsible title="Use Information">
        <ThemedView style={styles.stepContainer}>
          <ThemedText>
-          When you register you will pick either BarterBuy or BarterSell. Whichever one you choose, you will have a partner that has access to the other platform. 
+          When you register you will pick either BarterBuy or BarterSell. 
+         </ThemedText>
+         <ThemedText>
+         You will have a partner that has access to the other platform.
          </ThemedText>
          <ThemedText>
           BarterBuy allows you to view and buy from the bulletin board using goods.
@@ -108,16 +116,12 @@ export default function HomeScreen() {
        </ThemedView>
        </Collapsible>
 
-       <Collapsible title="Terms and Conditions">
+       <Collapsible title="Terms & Conditions">
        <ThemedView style={styles.stepContainer}>
          <ThemedText>
           Using this product, you agree that you will not hold Barter Buddy liable for any scams or trickery.
          </ThemedText>
-         <ThemedText>
-         </ThemedText>
-        <ThemedText>
-        </ThemedText>
-       </ThemedView>
+        </ThemedView>
        </Collapsible>
 
        <Collapsible title="FAQ">
@@ -125,25 +129,23 @@ export default function HomeScreen() {
          <ThemedText>
           Can I buy an item if I signed up for BarterSell? You can only buy an item through your partner, and vice versa for selling.
          </ThemedText>
-         <ThemedText>
-         </ThemedText>
-        <ThemedText>
-        </ThemedText>
        </ThemedView>
        </Collapsible>
 
-
       <StatusBar style="auto" />
+      </View>
+      </View>
     </View>
-    
   );
 }
 
 const styles = StyleSheet.create({
   titleContainer: {
-    flexDirection: 'row',
+    //flexDirection: 'row',
+    top: 30,
     alignItems: 'center',
     gap: 8,
+    
   },
   stepContainer: {
     gap: 8,
@@ -159,7 +161,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  },
+  titleWrapper: {
+
+  },
+  inputWrapper: {
+
+  },
+  contentContainer: {
+      flex: 1 // pushes the footer to the end of the screen
+  },
+  footer: {
+      flex: 1,
+      justifyContent: 'flex-end',
+      height: 100
+  },
+  baseText: {
+    fontFamily: 'Cochin',
+  },
+  titleText: {
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });
