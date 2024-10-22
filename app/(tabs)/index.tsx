@@ -91,16 +91,48 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
        <ThemedView style={styles.titleContainer}>
-        {/* <ThemedText type="title">Welcome!</ThemedText>
-         <HelloWave /> */}
+        <ThemedText type="title">Barter Buddy!</ThemedText>
        </ThemedView>
-       <Collapsible title="SQLite Test">
+
+       <Collapsible title="Use Information">
        <ThemedView style={styles.stepContainer}>
          <ThemedText>
-           Database
+          When you register you will pick either BarterBuy or BarterSell. Whichever one you choose, you will have a partner that has access to the other platform. 
          </ThemedText>
+         <ThemedText>
+          BarterBuy allows you to view and buy from the bulletin board using goods.
+         </ThemedText>
+        <ThemedText>
+          BarterSell allows you to post an item to the bulletin board to sell for other goods.
+        </ThemedText>
        </ThemedView>
        </Collapsible>
+
+       <Collapsible title="Terms and Conditions">
+       <ThemedView style={styles.stepContainer}>
+         <ThemedText>
+          Using this product, you agree that you will not hold Barter Buddy liable for any scams or trickery.
+         </ThemedText>
+         <ThemedText>
+         </ThemedText>
+        <ThemedText>
+        </ThemedText>
+       </ThemedView>
+       </Collapsible>
+
+       <Collapsible title="FAQ">
+       <ThemedView style={styles.stepContainer}>
+         <ThemedText>
+          Can I buy an item if I signed up for BarterSell? You can only buy an item through your partner, and vice versa for selling.
+         </ThemedText>
+         <ThemedText>
+         </ThemedText>
+        <ThemedText>
+        </ThemedText>
+       </ThemedView>
+       </Collapsible>
+
+
       <StatusBar style="auto" />
     </View>
     
