@@ -89,19 +89,24 @@ import { Collapsible } from '@/components/Collapsible';
 export default function HomeScreen() {
 
   return (
-
-    <View style={styles.container}>
-
+    <View style ={styles.container}>
+    <ParallaxScrollView
+      headerBackgroundColor={{ light: '#bbc1ca', dark: '#1D3D47' }}
+      headerImage={
+        <Image
+          source={require('@/assets/images/Barter-Buddy-Logo.png')}
+          style={styles.Logo}
+        /> 
+      }>
+        
       <View style={styles.titleContainer}>
         <ThemedText style={styles.titleText}>Barter Buddy!</ThemedText>
       </View>
 
-
     <View style={styles.footer}>
-    <View style={styles.stepContainer}>
        <Collapsible title="Use Information">
        <ThemedView style={styles.stepContainer}>
-         <ThemedText>
+         <ThemedText style={styles.baseText}>
           When you register you will pick either BarterBuy or BarterSell. 
          </ThemedText>
          <ThemedText>
@@ -126,58 +131,54 @@ export default function HomeScreen() {
 
        <Collapsible title="FAQ">
        <ThemedView style={styles.stepContainer}>
-         <ThemedText>
-          Can I buy an item if I signed up for BarterSell? You can only buy an item through your partner, and vice versa for selling.
-         </ThemedText>
+         <ThemedText> Can I buy an item if I signed up for BarterSell?</ThemedText>
+         <ThemedText> You can only buy an item through your partner, and vice versa for selling. </ThemedText>
        </ThemedView>
        </Collapsible>
 
       <StatusBar style="auto" />
       </View>
-      </View>
-    </View>
+    </ParallaxScrollView>
+  </View>
   );
 }
 
 const styles = StyleSheet.create({
   titleContainer: {
-    //flexDirection: 'row',
-    top: 30,
     alignItems: 'center',
     gap: 8,
-    
   },
   stepContainer: {
     gap: 8,
     marginBottom: 8,
+    
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
+  Logo: {
+    height: 250,
+    width: 350,
     bottom: 0,
-    left: 0,
-    position: 'absolute',
+    left: 30,
+    position: 'relative',
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#DBE4EE',
+
   },
   titleWrapper: {
 
   },
   inputWrapper: {
-
+    backgroundColor: '#DBE4EE',
   },
   contentContainer: {
-      flex: 1 // pushes the footer to the end of the screen
+      flex: 1, // pushes the footer to the end of the screen
   },
   footer: {
-      flex: 1,
-      justifyContent: 'flex-end',
-      height: 100
+    flex: 1,
+    justifyContent: 'flex-end',
   },
   baseText: {
-    fontFamily: 'Cochin',
   },
   titleText: {
     fontSize: 20,
