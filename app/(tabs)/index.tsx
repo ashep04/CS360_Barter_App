@@ -70,7 +70,7 @@ export default function HomeScreen() {
     </ParallaxScrollView>
       
     <View style={styles.footer}>
-
+{/* 
         <Collapsible title="Use Information">
             <ThemedView style={styles.stepContainer}>
               <ThemedText style={styles.baseText}>
@@ -101,7 +101,7 @@ export default function HomeScreen() {
                 You can only buy an item through your partner, and vice versa for selling.
               </ThemedText>
             </ThemedView>
-          </Collapsible>
+          </Collapsible> */}
 
         <ThemedText style={styles.baseText}>
           © 2024 Barter Buddy. All rights reserved.
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     gap: 4,
-    marginBottom: 8,
+    marginBottom: 2,
     justifyContent: 'flex-end',
   },
   baseText: {
