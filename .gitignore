@@ -18,3 +18,7 @@ web-build/
 
 expo-env.d.ts
 # @end expo-cli
+
+# User Specific Setting under .idea
+.idea/workspace.xml
+.idea/usage.statistics.xml
