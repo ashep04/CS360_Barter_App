@@ -2,7 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { StyleSheet, Image, Platform, TouchableOpacity } from 'react-native';
 import * as React from 'react';
 import { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
@@ -32,6 +32,23 @@ export default function TabTwoScreen() {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [password2Error, setPassword2Error] = useState('');
+
+  // Reset input and error when the screen is focused
+  useFocusEffect(
+    React.useCallback(() => {
+      // Clear all fields and error messages when the screen is focused
+      setUsername('');
+      setEmail('');
+      setPassword('');
+      setPassword2('');
+
+      setUsernameError('');
+      setEmailError('');
+      setPasswordError('');
+      setPassword2Error('');
+    }, []) // Empty array ensures it runs only on screen focus
+  );
+
 
 const handleSignup = () => {
     let valid = true;
