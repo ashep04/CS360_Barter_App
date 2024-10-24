@@ -1,7 +1,8 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { StyleSheet, Image, Platform, TouchableOpacity } from 'react-native';
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
@@ -16,6 +17,8 @@ import {
 } from 'react-native';
 
 export default function TabTwoScreen() {
+  const navigation = useNavigation();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -74,6 +77,13 @@ export default function TabTwoScreen() {
         <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={styles.loginButtonText}>Signup</Text>
         </TouchableOpacity>
+
+        <Text style={styles.navigation}>
+          Not a member?{' '}
+          <Text style={{ color: 'blue' }} onPress={() => navigation.navigate('SignupPage')}>
+            Signup Here
+          </Text>
+        </Text>
       </View>
     </ParallaxScrollView>
   );
@@ -117,4 +127,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  navigation: {
+    alignSelf: 'center',
+    paddingTop: 20,
+  }
 });
