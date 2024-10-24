@@ -15,19 +15,19 @@ export default function HomeScreen() {
   return (
     <View style ={styles.container}>
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#bbc1ca', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: '#DBE4EE', dark: '#1D3D47' }}
       headerImage={
         <Image
-          source={require('@/assets/images/Barter-Buddy-Logo.png')}
+          source={require('@/assets/images/BB-Logo-Long.png')}
           style={styles.Logo}
         /> 
       }>
 
         <View style={styles.contentWrapper}>
         <ScrollView contentContainerStyle={styles.contentContainer}>
-          <View style={styles.titleContainer}>
+          {/* <View style={styles.titleContainer}>
           <ThemedText style={styles.titleText}>Barter Buddy!</ThemedText>
-        </View>
+        </View> */}
 
           <Collapsible title="Use Information">
             <ThemedView style={styles.stepContainer}>
@@ -122,10 +122,10 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   Logo: {
-    height: 250,
+    height: 130,
     width: 350,
-    bottom: 0,
-    left: 30,
+    marginTop: 100,
+    alignSelf: 'center',
     position: 'relative',
     
   },
