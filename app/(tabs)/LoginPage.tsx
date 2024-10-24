@@ -1,5 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { StyleSheet, Image, Platform } from 'react-native';
+import { StyleSheet, Image, Platform, TouchableOpacity } from 'react-native';
 import * as React from 'react';
 import { useState } from 'react';
 
@@ -19,22 +19,38 @@ export default function TabTwoScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  // Error state variables
+  const [loginError, setLoginError] = useState('');
+
   const handleLogin = () => {
-    // Placeholder login logic
-    if (username === 'admin' && password === 'password') {
+    let valid = true;
+
+    // Clear previous error messages
+    setLoginError('');
+
+    // Validate fields
+    if (username === '' || password === '') {
+      setLoginError('The username or password is incorrect.');
+      valid = false;
+    }
+
+    if (valid) {
       Alert.alert('Login successful');
-    } else {
-      Alert.alert('Login failed', 'Invalid username or password');
     }
   };
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={<Ionicons size={310} name="code-slash" style={styles.headerImage} />}
+      headerBackgroundColor={{ light: '#DBE4EE', dark: '#2F242C' }}
+      headerImage={
+        <Image
+          source={require('@/assets/images/BB-Logo-Long.png')}
+          style={styles.headerImage}
+        />
+      }
     >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Login Page</ThemedText>
+        <ThemedText type="title">Login</ThemedText>
       </ThemedView>
 
       <View style={styles.loginContainer}>
@@ -45,6 +61,7 @@ export default function TabTwoScreen() {
           onChangeText={setUsername}
           autoCapitalize="none"
         />
+
         <TextInput
           style={styles.input}
           placeholder="Password"
@@ -52,7 +69,11 @@ export default function TabTwoScreen() {
           onChangeText={setPassword}
           secureTextEntry
         />
-        <Button title="Login" onPress={handleLogin} />
+        {loginError ? <Text style={styles.errorText}>{loginError}</Text> : null}
+
+        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+          <Text style={styles.loginButtonText}>Signup</Text>
+        </TouchableOpacity>
       </View>
     </ParallaxScrollView>
   );
@@ -60,10 +81,8 @@ export default function TabTwoScreen() {
 
 const styles = StyleSheet.create({
   headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+      alignSelf: 'center',
+      marginTop: 100,
   },
   titleContainer: {
     flexDirection: 'row',
@@ -74,11 +93,28 @@ const styles = StyleSheet.create({
   loginContainer: {
     padding: 20,
   },
+  errorText: {
+    color: 'red',
+    bottom: 18,
+    fontSize: 12,
+  },
   input: {
     height: 40,
     borderColor: 'gray',
+    backgroundColor: '#fff',
     borderWidth: 1,
     marginBottom: 20,
     paddingHorizontal: 10,
+  },
+  loginButton: {
+    backgroundColor: '#577399',
+    paddingVertical: 10,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  loginButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });

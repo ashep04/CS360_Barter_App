@@ -17,22 +17,50 @@ export default function TabTwoScreen() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
   const [accountType, setAccountType] = useState('barterbuy'); // Default account type
 
-  const handleSignup = () => {
-    // Placeholder signup logic
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Error state variables
+  const [usernameError, setUsernameError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [password2Error, setPassword2Error] = useState('');
+
+const handleSignup = () => {
+    let valid = true;
+    // Clear previous error messages
+    setUsernameError('');
+    setEmailError('');
+    setPasswordError('');
+    setPassword2Error('');
+
+    // Validate fields
     if (username === '') {
-      Alert.alert('Signup failed', 'Missing username');
-    } else if (email === '') {
-      Alert.alert('Signup failed', 'Missing email');
-    } else if (password === '') {
-      Alert.alert('Signup failed', 'Missing password');
-    } else if (!accountType) {
-      Alert.alert('Signup failed', 'Please select an account type');
-    } else {
+      setUsernameError('Username is required');
+      valid = false;
+    }
+    if (email === '') {
+      setEmailError('Email is required');
+      valid = false;
+    } else if (!emailPattern.test(email)) {
+      setEmailError('Please enter a valid email address');
+      valid = false;
+    }
+
+    if (password === '') {
+      setPasswordError('Password is required');
+      valid = false;
+    } else if (password !== password2) {
+      setPassword2Error('Passwords do not match');
+      valid = false;
+    }
+
+    if (valid) {
       Alert.alert('Signup successful', `Account type: ${accountType}`);
     }
-  };
+};
 
   const handleAccountTypeChange = (type) => {
     setAccountType(type);
@@ -40,13 +68,16 @@ export default function TabTwoScreen() {
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
+      headerBackgroundColor={{ light: '#DBE4EE', dark: '#2F242C' }}
       headerImage={
-        <Ionicons size={310} name="code-slash" style={styles.headerImage} />
+        <Image
+          source={require('@/assets/images/BB-Logo-Long.png')}
+          style={styles.headerImage}
+        />
       }
     >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Signup Page</ThemedText>
+        <ThemedText type="title">Signup</ThemedText>
       </ThemedView>
 
       <View style={styles.signupContainer}>
@@ -57,6 +88,8 @@ export default function TabTwoScreen() {
           onChangeText={setUsername}
           autoCapitalize="none"
         />
+        {usernameError ? <Text style={styles.errorText}>{usernameError}</Text> : null}
+
         <TextInput
           style={styles.input}
           placeholder="Email"
@@ -64,6 +97,8 @@ export default function TabTwoScreen() {
           onChangeText={setEmail}
           autoCapitalize="none"
         />
+        {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
+
         <TextInput
           style={styles.input}
           placeholder="Password"
@@ -71,8 +106,18 @@ export default function TabTwoScreen() {
           onChangeText={setPassword}
           secureTextEntry
         />
+        {passwordError ? <Text style={styles.errorText}>{passwordError}</Text> : null}
 
-        {/* Toggle buttons for selecting account type */}
+        <TextInput
+          style={styles.input}
+          placeholder="Confirm Password"
+          value={password2}
+          onChangeText={setPassword2}
+          secureTextEntry
+        />
+        {password2Error ? <Text style={styles.errorText}>{password2Error}</Text> : null}
+
+
         <View style={styles.toggleContainer}>
           <TouchableOpacity
             style={[
@@ -87,7 +132,7 @@ export default function TabTwoScreen() {
                 accountType === 'barterbuy' && styles.activeButtonText,
               ]}
             >
-              Barter Buy
+              Barter Buy Account
             </Text>
           </TouchableOpacity>
 
@@ -104,12 +149,14 @@ export default function TabTwoScreen() {
                 accountType === 'bartersell' && styles.activeButtonText,
               ]}
             >
-              Barter Sell
+              Barter Sell Account
             </Text>
           </TouchableOpacity>
         </View>
 
-        <Button title="Signup" onPress={handleSignup} />
+        <TouchableOpacity style={styles.signupButton} onPress={handleSignup}>
+          <Text style={styles.signupButtonText}>Signup</Text>
+        </TouchableOpacity>
       </View>
     </ParallaxScrollView>
   );
@@ -117,10 +164,8 @@ export default function TabTwoScreen() {
 
 const styles = StyleSheet.create({
   headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+      alignSelf: 'center',
+      marginTop: 100,
   },
   titleContainer: {
     flexDirection: 'row',
@@ -131,9 +176,15 @@ const styles = StyleSheet.create({
   signupContainer: {
     padding: 20,
   },
+  errorText: {
+    color: 'red',
+    bottom: 18,
+    fontSize: 12,
+  },
   input: {
     height: 40,
     borderColor: 'gray',
+    backgroundColor: '#fff',
     borderWidth: 1,
     marginBottom: 20,
     paddingHorizontal: 10,
@@ -152,12 +203,23 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   activeButton: {
-    backgroundColor: '#007AFF',
+    backgroundColor: '#577399',
   },
   toggleButtonText: {
     color: '#000',
   },
   activeButtonText: {
     color: '#fff',
+  },
+  signupButton: {
+    backgroundColor: '#577399',
+    paddingVertical: 10,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  signupButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
