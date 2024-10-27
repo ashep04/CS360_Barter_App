@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "CS360_Barter_App",
-    "slug": "CS360_Barter_App",
+    "name": "Barter Buddy",
+    "slug": "Barter_Buddy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#DBE4EE"
     },
     "ios": {
       "supportsTablet": true
@@ -18,7 +18,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#DBE4EE"
       },
       "package": "com.anonymous.CS360_Barter_App"
     },
@@ -31,7 +31,6 @@
       "expo-router"
     ],
     "experiments": {
-      "typedRoutes": true
     }
   }
 }
