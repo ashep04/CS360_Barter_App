@@ -18,3 +18,4 @@ web-build/
 .idea/workspace.xml
 .idea/usage.statistics.xml
 .idea/shelf/
+expo-env.d.ts
