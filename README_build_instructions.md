@@ -1,6 +1,4 @@
-# CS360_Barter_App
-
-Android app built for CS360 
+# Build Instructions for Barter Buddy
 
 Requirements for emulator:
 - Setup Android Studio and emulator https://docs.expo.dev/workflow/android-studio-emulator/
