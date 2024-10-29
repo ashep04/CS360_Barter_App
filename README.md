@@ -1,20 +1,13 @@
-# CS360_Barter_App
+# Barter Buddy
+>Android app built for CS360 using React Native, Expo, Express, MySQL
 
-Android app built for CS360 
+Barter Buddy is a user-friendly marketplace where individuals work
+with partners to trade items anonymously through a bulletin board.
+Barter Buddy is divided into two sections: Barter Buy and Barter
+Sell. A user chooses which account they would like during account
+creation and then has access to purchasing or selling items. The
+main focus of this app is to properly equate the value of different
+items being placed for sell for users as well as abstracting users
+so they remain anonymous.
 
-Requirements for emulator:
-- Setup Android Studio and emulator https://docs.expo.dev/workflow/android-studio-emulator/
-    This allows us to emulate any phone and get the **Android** **SDK** setup.
-    - You will need to setup a device on Android Studio.
-    - Add to your PATH environment variable the platform-tools folder in ~/AppData/Local/Android/Sdk/platform-tools
-    - Add ANDROID_HOME environment variable to ~/AppData/Local/Android/Sdk
-- Make sure the command adb and adb --version works in powershell on windows.
-
-### To run the project, navigate to the directory and run the following:
-- npm i
-- npx expo start
-  
-### Then either:
-- Hit the 'a' key to launch Android
-- Hit the 'w' key to launch web
-- Run ios on either a mac or in a modified environment. 
+[Build Instructions](README_build_instructions.md)
