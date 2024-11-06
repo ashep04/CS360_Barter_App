@@ -19,3 +19,10 @@ web-build/
 .idea/usage.statistics.xml
 .idea/shelf/
 expo-env.d.ts
+
+
+# amplify
+node_modules
+.amplify
+amplify_outputs*
+amplifyconfiguration*
