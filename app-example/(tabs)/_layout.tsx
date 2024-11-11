@@ -23,25 +23,24 @@ export default function TabLayout() {
           ),
         }}
       />
-            {/* <Tabs.Screen
+      <Tabs.Screen
         name="BarterBuy"
         options={{
           title: 'BarterBuy',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
           ),
         }}
       />
-            <Tabs.Screen
+      <Tabs.Screen
         name="BarterSell"
         options={{
           title: 'BarterSell',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
           ),
         }}
-      /> */}
-
+      />
       <Tabs.Screen
         name="LoginPage"
         options={{
@@ -55,15 +54,6 @@ export default function TabLayout() {
         name="SignupPage"
         options={{
           title: 'Signup Page',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
-        }}
-      />
-            <Tabs.Screen
-        name="testpage"
-        options={{
-          title: 'Test Page',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
           ),

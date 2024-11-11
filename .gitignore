@@ -11,6 +11,8 @@ npm-debug.*
 *.iml
 web-build/
 
+.env
+
 # macOS
 .DS_Store
 
@@ -18,4 +20,10 @@ web-build/
 .idea/workspace.xml
 .idea/usage.statistics.xml
 .idea/shelf/
-expo-env.d.ts
+
+
+# amplify
+node_modules
+.amplify
+amplify_outputs*
+amplifyconfiguration*
