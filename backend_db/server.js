@@ -7,6 +7,15 @@ require('dotenv').config(); // Load environment variables
 app.use(express.json()); // Parse JSON requests
 app.use(cors());
 
+
+db.connect((err) => {
+  if (err) {
+    console.error('Error connecting to the XAMPP database:', err);
+    return;
+  }
+  console.log('Connected to the XAMPP database!');
+});
+
 // uses component adduser, API to insert user data
 app.post('/addUser', (req, res) => {
     const { id, username, password } = req.body;
