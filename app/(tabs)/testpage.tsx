@@ -1,11 +1,33 @@
+import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList, ScrollView, Image, Platform } from 'react-native';
+import axiosInstance from '../api/apiConfig'; // Import the Axios configuration
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Collapsible } from '@/components/Collapsible';
+import AddUser from '../../components/AddUser'; // Import the AddUser component
+import { SafeAreaView } from 'react-native';
 
 export default function HomeScreen() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch data from the backend
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axiosInstance.get('/'); // Use Axios instance
+        setData(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -18,42 +40,25 @@ export default function HomeScreen() {
           />
         }
       >
+        <AddUser /> {/* Render the AddUser component */}
         <View style={styles.contentWrapper}>
           <ScrollView contentContainerStyle={styles.contentContainer}>
-            <Collapsible title="Use Information">
+            <Collapsible title="Database">
               <ThemedView style={styles.stepContainer}>
-                <ThemedText style={styles.baseText}>
-                  When you register, you will pick either BarterBuy or BarterSell.
-                </ThemedText>
-                <ThemedText>
-                  You will have a partner that has access to the other platform.
-                </ThemedText>
-                <ThemedText>
-                  BarterBuy allows you to view and buy from the bulletin board using goods.
-                </ThemedText>
-                <ThemedText>
-                  BarterSell allows you to post an item to the bulletin board to sell for other goods.
-                </ThemedText>
+                {/* <FlatList
+                  data={data}
+                  keyExtractor={(item) => item.id.toString()}
+                  renderItem={({ item }) => <Text style={styles.item}>{item.name}</Text>}
+                /> */}
+                <FlatList
+                  data={data}
+                  keyExtractor={(item) => item.id.toString()} // Assuming 'id' is unique
+                  renderItem={({ item }) => (
+                    <Text style={styles.item}>{item.id}</Text> // Adjust based on actual data
+                  )}
+                />
               </ThemedView>
             </Collapsible>
-
-            <Collapsible title="Terms & Conditions">
-              <ThemedView style={styles.stepContainer}>
-                <ThemedText>
-                  Using this product, you agree that you will not hold Barter Buddy liable for any scams or trickery.
-                </ThemedText>
-              </ThemedView>
-            </Collapsible>
-
-            <Collapsible title="FAQ">
-              <ThemedView style={styles.stepContainer}>
-                <ThemedText>Can I buy an item if I signed up for BarterSell?</ThemedText>
-                <ThemedText>
-                  You can only buy an item through your partner, and vice versa for selling.
-                </ThemedText>
-              </ThemedView>
-            </Collapsible>
-
           </ScrollView>
         </View>
       </ParallaxScrollView>

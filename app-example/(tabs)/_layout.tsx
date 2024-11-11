@@ -23,7 +23,24 @@ export default function TabLayout() {
           ),
         }}
       />
-
+      <Tabs.Screen
+        name="BarterBuy"
+        options={{
+          title: 'BarterBuy',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="BarterSell"
+        options={{
+          title: 'BarterSell',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+          ),
+        }}
+      />
       <Tabs.Screen
         name="LoginPage"
         options={{
