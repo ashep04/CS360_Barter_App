@@ -23,7 +23,7 @@ export default function TabLayout() {
           ),
         }}
       />
-            {/* <Tabs.Screen
+            <Tabs.Screen
         name="BarterBuy"
         options={{
           title: 'BarterBuy',
@@ -40,7 +40,7 @@ export default function TabLayout() {
             <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
           ),
         }}
-      /> */}
+      />
 
       <Tabs.Screen
         name="LoginPage"
