@@ -6,7 +6,7 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Collapsible } from '@/components/Collapsible';
-import AddUser from '../../components/AddUser'; // Import the AddUser component
+import AddUser from '@/components/AddUser'; // Import the AddUser component
 import { SafeAreaView } from 'react-native';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 
@@ -35,7 +35,7 @@ export default function HomeScreen() {
     <View style={[styles.container, { backgroundColor: currentTheme.background }]}>
       <ParallaxScrollView
         //headerBackgroundColor={{ light: '#DBE4EE', dark: '#1D3D47' }}
-        headerBackgroundColor={{ light: '#DBE4EE', dark: '#2F242C' }}
+        headerBackgroundColor={{ light: currentTheme.background, dark: currentTheme.background }}
         headerImage={
           <Image
             source={require('@/assets/images/BB-Logo-Long.png')}
@@ -43,7 +43,8 @@ export default function HomeScreen() {
           />
         }
       >
-        <AddUser /> {/* Render the AddUser component */}
+        <AddUser /> 
+        {/* Render the AddUser component */}
         <View style={[styles.contentWrapper, { backgroundColor: currentTheme.background }]}>
           <ScrollView contentContainerStyle={[styles.contentContainer, { backgroundColor: currentTheme.background }]}>
             <Collapsible title="Database">
@@ -53,13 +54,13 @@ export default function HomeScreen() {
                   keyExtractor={(item) => item.id.toString()}
                   renderItem={({ item }) => <Text style={styles.item}>{item.name}</Text>}
                 /> */}
-                <FlatList
-                  data={data}
-                  keyExtractor={(item) => item.id.toString()} // Assuming 'id' is unique
+                {/* <FlatList
+                  data={data || []} // Fallback to an empty array if `data` is undefined
+                  keyExtractor={(item) => String(item?.id || 'defaultKey')} // Ensure key is valid
                   renderItem={({ item }) => (
-                    <Text style={styles.item}>{item.id}</Text> // Adjust based on actual data
+                    <Text style={styles.item}>{item?.id ? String(item.id) : 'No ID'}</Text>
                   )}
-                />
+                /> */}
               </ThemedView>
             </Collapsible>
           </ScrollView>

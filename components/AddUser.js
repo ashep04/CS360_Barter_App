@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import axios from 'axios';
+import { TouchableOpacity, Text } from 'react-native';
 
 const AddUser = () => {
   // Declare state variables to hold user input
@@ -48,10 +49,16 @@ const AddUser = () => {
         value={password}
         onChangeText={setPassword}
       />
-      <Button title="Add User" onPress={handleAddUser} />
+       <Button title="Add User" onPress={handleAddUser} />
+
     </View>
   );
 };
+/*
+    <TouchableOpacity style={styles.button} onPress={handleAddUser}>
+      <Text style={styles.buttonText}>Add User</Text>
+    </TouchableOpacity>    
+*/
 
 // Basic styles
 const styles = StyleSheet.create({

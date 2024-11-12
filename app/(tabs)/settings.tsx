@@ -76,6 +76,9 @@ export default function HomeScreen() {
                   </View>
                 ))}
               </View>
+            </View>
+
+            <View style={styles.row }>
 
               {/* Transactions Column */}
               <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
@@ -101,6 +104,7 @@ export default function HomeScreen() {
                 </TouchableOpacity>
               </View>
             </View>
+
               {/* Additional Row with 4 Columns */}
               <View style={styles.row}>
               {/* Service Data Columns */}
