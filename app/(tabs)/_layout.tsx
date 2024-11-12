@@ -4,9 +4,12 @@ import React from 'react';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { ThemeProvider } from '@react-navigation/native';
+import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const {currentTheme, toggleTheme} = useTheme();
 
   return (
     <Tabs
@@ -69,6 +72,16 @@ export default function TabLayout() {
           ),
         }}
       />
+        <Tabs.Screen
+        name="settings"
+        options={{
+          title: 'Settings',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+          ),
+        }}
+      />
+      
     </Tabs>
   );
 }
