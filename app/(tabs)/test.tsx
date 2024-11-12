@@ -12,9 +12,9 @@ export default function TabTwoScreen() {
   const {currentTheme, toggleTheme} = useTheme();
 
   return (
-<View style={[styles.container, { backgroundColor: currentTheme.background }]}>
-    <ParallaxScrollView
-        headerBackgroundColor={{ light: currentTheme.background, dark: currentTheme.background }}
+    <View style={[styles.container, { backgroundColor: currentTheme.background }]}>
+            <ParallaxScrollView
+        headerBackgroundColor={{ light: '#DBE4EE', dark: '#2F242C' }}
         headerImage={
           <Image
             source={require('@/assets/images/BB-Logo-Long.png')}
@@ -22,16 +22,13 @@ export default function TabTwoScreen() {
           />
           }>
       <ThemedView style={[styles.titleContainer, { backgroundColor: currentTheme.background }]}>
-        <ThemedText type="title">BarterSell</ThemedText>
+        <ThemedText style={[styles.container, { backgroundColor: currentTheme.background }]} type="title">BarterSell</ThemedText>
       </ThemedView>
       
     </ParallaxScrollView>
-      <View style={[styles.footer, { backgroundColor: currentTheme.background }]}>
-        <Text style={[styles.baseText, { color: currentTheme.text }]}>
-          © 2024 Barter Buddy. All rights reserved.
-        </Text>
-      </View>
     </View>
+
+    
   );
 }
 

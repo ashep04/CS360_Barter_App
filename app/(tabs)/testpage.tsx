@@ -8,10 +8,12 @@ import { ThemedView } from '@/components/ThemedView';
 import { Collapsible } from '@/components/Collapsible';
 import AddUser from '../../components/AddUser'; // Import the AddUser component
 import { SafeAreaView } from 'react-native';
+import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 
 export default function HomeScreen() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const {currentTheme, toggleTheme} = useTheme();
 
   // Fetch data from the backend
   useEffect(() => {
@@ -30,21 +32,22 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: currentTheme.background }]}>
       <ParallaxScrollView
-        headerBackgroundColor={{ light: '#DBE4EE', dark: '#1D3D47' }}
+        //headerBackgroundColor={{ light: '#DBE4EE', dark: '#1D3D47' }}
+        headerBackgroundColor={{ light: '#DBE4EE', dark: '#2F242C' }}
         headerImage={
           <Image
             source={require('@/assets/images/BB-Logo-Long.png')}
-            style={styles.Logo}
+            style={styles.headerImage}
           />
         }
       >
         <AddUser /> {/* Render the AddUser component */}
-        <View style={styles.contentWrapper}>
-          <ScrollView contentContainerStyle={styles.contentContainer}>
+        <View style={[styles.contentWrapper, { backgroundColor: currentTheme.background }]}>
+          <ScrollView contentContainerStyle={[styles.contentContainer, { backgroundColor: currentTheme.background }]}>
             <Collapsible title="Database">
-              <ThemedView style={styles.stepContainer}>
+              <ThemedView style={[styles.stepContainer, { backgroundColor: currentTheme.background }]}>
                 {/* <FlatList
                   data={data}
                   keyExtractor={(item) => item.id.toString()}
@@ -63,10 +66,10 @@ export default function HomeScreen() {
         </View>
       </ParallaxScrollView>
 
-      <View style={styles.footer}>
-        <ThemedText style={styles.baseText}>
+      <View style={[styles.footer, { backgroundColor: currentTheme.background }]}>
+        <Text style={[styles.baseText, { color: currentTheme.text }]}>
           © 2024 Barter Buddy. All rights reserved.
-        </ThemedText>
+        </Text>
         <StatusBar style="auto" />
       </View>
     </View>
@@ -74,6 +77,10 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  headerImage: {
+    alignSelf: 'center',
+    marginTop: 100,
+  },
   titleContainer: {
     alignItems: 'center',
     gap: 8,
@@ -104,7 +111,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   inputWrapper: {
-    backgroundColor: '#DBE4EE',
+    //backgroundColor: '#DBE4EE',
   },
   contentContainer: {
     flexGrow: 1,
@@ -113,6 +120,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   footer: {
+    //backgroundColor: '#2F242C',
     gap: 4,
     marginBottom: 2,
     justifyContent: 'flex-end',

@@ -5,13 +5,16 @@ import { StyleSheet, TouchableOpacity, useColorScheme } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Colors } from '@/constants/Colors';
+import { ThemeProvider, useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
+
 
 export function Collapsible({ children, title }: PropsWithChildren & { title: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const theme = useColorScheme() ?? 'light';
+  const {currentTheme, toggleTheme, isDarkTheme} = useTheme();
 
   return (
-    <ThemedView>
+    <ThemedView style={ { backgroundColor: currentTheme.background }}>
       <TouchableOpacity
         style={styles.heading}
         onPress={() => setIsOpen((value) => !value)}
@@ -19,7 +22,7 @@ export function Collapsible({ children, title }: PropsWithChildren & { title: st
         <Ionicons
           name={isOpen ? 'chevron-down' : 'chevron-forward-outline'}
           size={18}
-          color={theme === 'light' ? Colors.light.icon : Colors.dark.icon}
+          color={isDarkTheme ? Colors.light.icon : Colors.dark.icon}
         />
         <ThemedText type="defaultSemiBold">{title}</ThemedText>
       </TouchableOpacity>

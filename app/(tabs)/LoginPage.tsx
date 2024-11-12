@@ -7,6 +7,7 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 
 import {
   View,
@@ -17,6 +18,7 @@ import {
 } from 'react-native';
 
 export default function TabTwoScreen() {
+  const {currentTheme, toggleTheme} = useTheme();
   const navigation = useNavigation();
 
   const [username, setUsername] = useState('');
@@ -53,16 +55,17 @@ export default function TabTwoScreen() {
   };
 
   return (
+    <View style={[styles.container, { backgroundColor: currentTheme.background }]}>
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#DBE4EE', dark: '#2F242C' }}
-      headerImage={
+        headerBackgroundColor={{ light: currentTheme.background, dark: currentTheme.background }}
+        headerImage={
         <Image
           source={require('@/assets/images/BB-Logo-Long.png')}
           style={styles.headerImage}
         />
       }
     >
-      <ThemedView style={styles.titleContainer}>
+      <ThemedView style={[styles.titleContainer, { backgroundColor: currentTheme.background }]}>
         <ThemedText type="title">Login</ThemedText>
       </ThemedView>
 
@@ -96,10 +99,23 @@ export default function TabTwoScreen() {
         </Text>
       </View>
     </ParallaxScrollView>
+
+    <View style={[styles.footer, { backgroundColor: currentTheme.background }]}>
+      <Text style={[styles.baseText, { color: currentTheme.text }]}>
+        © 2024 Barter Buddy. All rights reserved.
+      </Text>
+    </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    //alignItems: 'center',
+    //padding: 20,
+  },
   headerImage: {
       alignSelf: 'center',
       marginTop: 100,
@@ -140,5 +156,12 @@ const styles = StyleSheet.create({
   navigation: {
     alignSelf: 'center',
     paddingTop: 20,
-  }
+  },
+  footer: {
+    //backgroundColor: '#2F242C',
+    gap: 4,
+    marginBottom: 2,
+    justifyContent: 'flex-end',
+  },
+  baseText: {},
 });
