@@ -49,7 +49,7 @@ export default function HomeScreen() {
               </ThemedView>
             </Collapsible>
 
-            <Collapsible style={[styles.stepContainer, { backgroundColor: currentTheme.background }]} title="FAQ">
+            <Collapsible title="FAQ">
             <ThemedView style={[styles.stepContainer, { backgroundColor: currentTheme.background }]}>
               <ThemedText style={[styles.baseText, { color: currentTheme.text }]}>
                   Can I buy an item if I signed up for BarterSell?
