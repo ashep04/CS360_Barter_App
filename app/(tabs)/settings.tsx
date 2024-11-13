@@ -5,11 +5,67 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Collapsible } from '@/components/Collapsible';
 import { Colors } from '@/constants/Colors'; // Import your Colors object
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
-
+import axiosInstance from '../api/apiConfig'; // Import the Axios configuration
+import AddUser from '@/database_components/AddUser'; // Import the AddUser component
 
 export default function HomeScreen() {
+  
+  const [dataAccounts, setDataAccounts] = useState([]);
+  const [dataPartners, setDataPartners] = useState([]);
+  const [dataTransactions, setDataTransactions] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+
+  // Fetch data for users
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axiosInstance.get('/getAccounts'); // Use Axios instance
+        setDataAccounts(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Fetch data for partnerships
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axiosInstance.get('/getPartnerships'); // Use Axios instance
+        setDataPartners(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Fetch data for transactions
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axiosInstance.get('/getTransactions'); // Use Axios instance
+        setDataTransactions(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   // Sample data for each section
   const accountInfo = [
     { id: '1', label: 'Username', value: 'john_doe' },
@@ -57,7 +113,7 @@ export default function HomeScreen() {
             <View style={styles.row }>
 
               {/* Account Information Column */}
-              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
+              {/* <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
                 <Text style={[styles.titleText, { color: currentTheme.text }]}>Account Info</Text>
                 {accountInfo.map(item => (
                   <View key={item.id} style={styles.item}>
@@ -65,29 +121,79 @@ export default function HomeScreen() {
                     <Text style={{ color: currentTheme.text }}>{item.value}</Text>
                   </View>
                 ))}
+              </View> */}
+
+              {/* Account Information Column */}
+              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
+                <Text style={[styles.titleText, { color: currentTheme.text }]}>Account Info</Text>
+                {loading ? (
+                  <Text style={{ color: currentTheme.text }}>Loading...</Text>
+                ) : (
+                  dataAccounts.map((item) => (
+                    <View key={item.id} style={styles.item}>
+                      <Text style={[styles.itemLabel, { color: currentTheme.text }]}>Username: {item?.username || 'NA'}</Text>
+                      {/* <Text style={[styles.itemLabel, { color: currentTheme.text }]}>{item?.username || 'NA'}</Text> */}
+                      <Text style={{color: currentTheme.text}}>Password: {item?.password || 'NA'}</Text>
+                      <Text style={[styles.itemLabel, { color: currentTheme.text }]}>
+                        ID: {item?.id || 'NA'}
+                      </Text>
+                    </View>
+                  ))
+                )}
               </View>
 
               {/* Partnerships Column */}
-              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
+              {/* <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
                 <Text style={[styles.titleText, { color: currentTheme.text }]}>Partnerships</Text>
                 {partnerships.map(item => (
                   <View key={item.id} style={styles.item}>
                     <Text style={{ color: currentTheme.text }}>{item.name} - {item.status}</Text>
                   </View>
                 ))}
+              </View> */}
+
+              {/* Partnerships Column */}
+              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
+                <Text style={[styles.titleText, { color: currentTheme.text }]}>Partnerships</Text>
+                {loading ? (
+                  <Text style={{ color: currentTheme.text }}>Loading...</Text>
+                ) : (
+                  dataPartners.map((item) => (
+                    <View key={item.id} style={styles.item}>
+                      <Text style={[styles.itemLabel, { color: currentTheme.text }]}>ID 1: {item?.id || 'NA'}</Text>
+                      <Text style={[styles.itemLabel, { color: currentTheme.text }]}>ID 2: {item?.partner_id || 'NA'}</Text>
+                    </View>
+                  ))
+                )}
               </View>
             </View>
 
             <View style={styles.row }>
-
+              
               {/* Transactions Column */}
-              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
+              {/* <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
                 <Text style={[styles.titleText, { color: currentTheme.text }]}>Transactions</Text>
                 {transactions.map(item => (
                   <View key={item.id} style={styles.item}>
                     <Text style={{ color: currentTheme.text }}>{item.date} - {item.amount} - {item.status}</Text>
                   </View>
                 ))}
+              </View> */}
+              
+              {/* Transactions Column */}
+              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
+                <Text style={[styles.titleText, { color: currentTheme.text }]}>Transactions</Text>
+                {loading ? (
+                  <Text style={{ color: currentTheme.text }}>Loading...</Text>
+                ) : (
+                  dataTransactions.map((item) => (
+                    <View key = {item.exchange_id} style={styles.item}>
+                      <Text style={[styles.itemLabel, { color: currentTheme.text }]}>EID: {item?.exchange_id || 'NA'}</Text>
+                      <Text style={[styles.itemLabel, { color: currentTheme.text }]}>Time: {item?.hash_code || 'NA'}</Text>
+
+                    </View>
+                  ))
+                )}
               </View>
 
               {/* Settings Column */}
@@ -108,17 +214,17 @@ export default function HomeScreen() {
               {/* Additional Row with 4 Columns */}
               <View style={styles.row}>
               {/* Service Data Columns */}
-              {additionalData.map((item, index) => (
+              {/* {additionalData.map((item, index) => (
                 <View key={item.id} style={[styles.column, { backgroundColor: currentTheme.background }]}>
                   <Text style={[styles.titleText, { color: currentTheme.text }]}>{item.title}</Text>
                   <Text style={{ color: currentTheme.text }}>Description: {item.description}</Text>
                   <Text style={{ color: currentTheme.text }}>Status: {item.status}</Text>
                 </View>
-              ))}
+              ))} */}
             </View>
 
             {/* Additional Row with Four Columns */}
-            <View style={styles.row}>
+            {/* <View style={styles.row}>
               <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
                 <Text style={[styles.titleText, { color: currentTheme.text }]}>Settings</Text>
                 <Text style={{ color: currentTheme.text }}>Additional Column 1</Text>
@@ -135,7 +241,7 @@ export default function HomeScreen() {
                 <Text style={[styles.titleText, { color: currentTheme.text }]}>Settings</Text>
                 <Text style={{ color: currentTheme.text }}>Additional Column 4</Text>
               </View>
-            </View>
+            </View> */}
 
           </ScrollView>
         </View>
