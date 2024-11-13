@@ -1,6 +1,5 @@
 import { Stack } from "expo-router";
 import { StyleSheet, SafeAreaView, StatusBar, View } from 'react-native';
-import AddUser from '../components/AddUser.js'; // Import the AddUser component
 import { ThemeProvider, useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 
 
