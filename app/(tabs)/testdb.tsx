@@ -2,11 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList, ScrollView, Image, Platform } from 'react-native';
 import axiosInstance from '../api/apiConfig'; // Import the Axios configuration
+
+// Components
+import AddUser from '@/database_components/AddUser'; // Import the AddUser component
+import AddPartnership from '@/database_components/AddPartnership'; // Import the AddUser component
+import AccessPartnership from '@/database_components/AccessPartnership'; // Import the AddUser component
+import AddTransaction from '@/database_components/AddTransactions'; // Import the AddUser component
+import AddExchange from '@/database_components/AddExchanges'; // Import the AddUser component
+
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Collapsible } from '@/components/Collapsible';
-import AddUser from '@/components/AddUser'; // Import the AddUser component
 import { SafeAreaView } from 'react-native';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 
@@ -19,7 +26,7 @@ export default function HomeScreen() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosInstance.get('/'); // Use Axios instance
+        const response = await axiosInstance.get('/getAccounts'); // Use Axios instance
         setData(response.data);
         setLoading(false);
       } catch (error) {
@@ -44,23 +51,28 @@ export default function HomeScreen() {
         }
       >
         <AddUser /> 
+        <AddPartnership />
+        <AccessPartnership />
+        <AddExchange/>
+        <AddTransaction/>
+
         {/* Render the AddUser component */}
         <View style={[styles.contentWrapper, { backgroundColor: currentTheme.background }]}>
           <ScrollView contentContainerStyle={[styles.contentContainer, { backgroundColor: currentTheme.background }]}>
-            <Collapsible title="Database">
+            <Collapsible title="User ID Database">
               <ThemedView style={[styles.stepContainer, { backgroundColor: currentTheme.background }]}>
                 {/* <FlatList
                   data={data}
                   keyExtractor={(item) => item.id.toString()}
                   renderItem={({ item }) => <Text style={styles.item}>{item.name}</Text>}
                 /> */}
-                {/* <FlatList
+                <FlatList
                   data={data || []} // Fallback to an empty array if `data` is undefined
                   keyExtractor={(item) => String(item?.id || 'defaultKey')} // Ensure key is valid
                   renderItem={({ item }) => (
                     <Text style={styles.item}>{item?.id ? String(item.id) : 'No ID'}</Text>
                   )}
-                /> */}
+                />
               </ThemedView>
             </Collapsible>
           </ScrollView>

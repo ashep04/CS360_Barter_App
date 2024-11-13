@@ -1,17 +1,18 @@
-// Import necessary modules
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import axios from 'axios';
-import { TouchableOpacity, Text } from 'react-native';
 
 const AddUser = () => {
-  // Declare state variables to hold user input
   const [userId, setUserId] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  // Function to handle adding a user
   const handleAddUser = async () => {
+    if (!userId || !username || !password) {
+      Alert.alert('Error', 'All fields are required');
+      return;
+    }
+
     try {
       const response = await axios.post('http://172.29.219.41:3000/addUser', {
         id: userId,
@@ -19,11 +20,12 @@ const AddUser = () => {
         password: password,
       });
 
-      // Success: Show a success message
       Alert.alert('Success', 'User added successfully');
+      // Reset form fields
+      setUserId('');
+      setUsername('');
+      setPassword('');
     } catch (error) {
-      // Error: Show an error message
-      console.error(error);
       Alert.alert('Error', 'Failed to add user');
     }
   };
@@ -49,18 +51,11 @@ const AddUser = () => {
         value={password}
         onChangeText={setPassword}
       />
-       <Button title="Add User" onPress={handleAddUser} />
-
+      <Button title="Add User" onPress={handleAddUser} />
     </View>
   );
 };
-/*
-    <TouchableOpacity style={styles.button} onPress={handleAddUser}>
-      <Text style={styles.buttonText}>Add User</Text>
-    </TouchableOpacity>    
-*/
 
-// Basic styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
