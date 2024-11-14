@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet, Text } from 'react-native';
 import axios from 'axios';
+import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 
 const AddTransaction = () => {
   const [exchangeId, setExchangeId] = useState('');
   const [hashCode, setHashCode] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
+  const {currentTheme, toggleTheme} = useTheme();
 
   const handleAddTransaction = async () => {
     if (!exchangeId || !hashCode) {
@@ -31,14 +33,14 @@ const AddTransaction = () => {
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: currentTheme.text }]}
         placeholder="Exchange ID"
         keyboardType="numeric"
         value={exchangeId}
         onChangeText={setExchangeId}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: currentTheme.text }]}
         placeholder="Hash Code"
         value={hashCode}
         onChangeText={setHashCode}

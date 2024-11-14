@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, Text, StyleSheet } from 'react-native';
 import axios from 'axios';
+import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 
 const AccessPartnership = () => {
   const [userId, setUserId] = useState('');
   const [partnerId, setPartnerId] = useState('');
   const [partnershipStatus, setPartnershipStatus] = useState('');
+  const {currentTheme, toggleTheme} = useTheme();
 
   const handleAccessPartnership = async () => {
     if (!userId || !partnerId) {
@@ -34,14 +36,14 @@ const AccessPartnership = () => {
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.input}
+            style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter User ID"
         value={userId}
         onChangeText={setUserId}
       />
       <TextInput
-        style={styles.input}
-        placeholder="Enter Partner ID"
+            style={[styles.input, { color: currentTheme.text }]}
+            placeholder="Enter Partner ID"
         value={partnerId}
         onChangeText={setPartnerId}
       />

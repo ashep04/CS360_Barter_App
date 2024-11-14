@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import axios from 'axios';
+import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 
 const DeleteUser = () => {
   const [userId, setUserId] = useState('');
+  const {currentTheme, toggleTheme} = useTheme();
 
   const handleDeleteUser = async () => {
     if (!userId) {

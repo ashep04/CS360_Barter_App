@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import axios from 'axios';
+import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 
 const AddUser = () => {
   const [userId, setUserId] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const {currentTheme, toggleTheme} = useTheme();
 
   const handleAddUser = async () => {
     if (!userId || !username || !password) {
@@ -33,19 +35,19 @@ const AddUser = () => {
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter User ID"
         value={userId}
         onChangeText={setUserId}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter Username"
         value={username}
         onChangeText={setUsername}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter Password"
         secureTextEntry
         value={password}

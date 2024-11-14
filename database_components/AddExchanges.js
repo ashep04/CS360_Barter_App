@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import axios from 'axios';
+import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 
 const AddExchanges = () => {
   const [sellerId, setSellerId] = useState('');
@@ -12,6 +13,7 @@ const AddExchanges = () => {
   const [commodityValue, setCommodityValue] = useState('');
   const [hashCode, setHashCode] = useState('');
   const [status, setStatus] = useState('pending');  // Default status is 'pending'
+  const {currentTheme, toggleTheme} = useTheme();
 
   const handleAddExchange = async () => {
     if (!sellerId || !buyerId || !commodityId || !offerCommodityId || !commodityValue || !hashCode) {
@@ -51,52 +53,52 @@ const AddExchanges = () => {
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter Seller ID"
         value={sellerId}
         onChangeText={setSellerId}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter Buyer ID"
         value={buyerId}
         onChangeText={setBuyerId}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter Seller Partner ID (Optional)"
         value={sellerPartnerId}
         onChangeText={setSellerPartnerId}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter Buyer Partner ID (Optional)"
         value={buyerPartnerId}
         onChangeText={setBuyerPartnerId}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter Commodity ID"
         value={commodityId}
         onChangeText={setCommodityId}
         keyboardType="numeric"
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter Offer Commodity ID"
         value={offerCommodityId}
         onChangeText={setOfferCommodityId}
         keyboardType="numeric"
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter Commodity Value"
         value={commodityValue}
         onChangeText={setCommodityValue}
         keyboardType="numeric"
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter Hash Code"
         value={hashCode}
         onChangeText={setHashCode}

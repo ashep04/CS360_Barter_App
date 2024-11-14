@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import axios from 'axios';
+import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 
 const AddPartnership = () => {
   const [userId, setUserId] = useState('');
   const [partnerId, setPartnerId] = useState('');
   const [partnerStatus, setPartnerStatus] = useState('pending');  // Default status is 'pending'
+  const {currentTheme, toggleTheme} = useTheme();
 
 
   const handleAddPartnership = async () => {
@@ -42,26 +44,29 @@ const AddPartnership = () => {
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter User ID"
         value={userId}
         onChangeText={setUserId}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter Partner ID"
         value={partnerId}
         onChangeText={setPartnerId}
       />
 
       <View style={styles.statusContainer}>
-        <Text>Status: {partnerStatus}</Text>
+        <Text
+        style={[styles.input, { color: currentTheme.text }]}>
+          Status: {partnerStatus}
+        </Text>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={setStatusPending}>
-            <Text style={styles.buttonText}>Pending</Text>
+            <Text style={[styles.buttonText, {color: currentTheme.text}]}>Pending</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={setStatusAccepted}>
-            <Text style={styles.buttonText}>Accepted</Text>
+            <Text style={[styles.buttonText, {color: currentTheme.text}]}>Accepted</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -101,7 +106,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   buttonText: {
-    color: 'white',
+    //color: 'white',
     fontSize: 16,
   },
 });

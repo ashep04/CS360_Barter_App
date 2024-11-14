@@ -70,8 +70,9 @@ export default function HomeScreen() {
                   data={data || []} // Fallback to an empty array if `data` is undefined
                   keyExtractor={(item) => String(item?.id || 'defaultKey')} // Ensure key is valid
                   renderItem={({ item }) => (
-                    <Text style={styles.item}>{item?.id ? String(item.id) : 'No ID'}</Text>
-                  )}
+                    <Text style={[styles.item, { color: currentTheme.text }]}>{item?.id ? String(item.id) : 'No ID'}</Text>
+                  )}       
+
                 />
               </ThemedView>
             </Collapsible>
