@@ -14,7 +14,7 @@ const AccessPartnership = () => {
     }
 
     try {
-      const response = await axios.get('http://172.29.219.41:3000/accessPartnerships', {
+      const response = await axios.get('http://localhost:3000/accessPartnerships', {
         params: { id: userId, partner_id: partnerId },
       });
 

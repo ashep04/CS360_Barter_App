@@ -12,7 +12,7 @@ const DeleteUser = () => {
     }
 
     try {
-      const response = await axios.post('http://172.29.219.41:3000/deleteUser', { id: userId });
+      const response = await axios.post('http://localhost:3000/deleteUser', { id: userId });
       Alert.alert('Success', 'User deleted successfully');
       setUserId('');
     } catch (error) {

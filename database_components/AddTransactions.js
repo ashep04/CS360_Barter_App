@@ -14,7 +14,7 @@ const AddTransaction = () => {
     }
 
     try {
-      const response = await axios.post('http://172.29.219.41:3000/addTransaction', {
+      const response = await axios.post('http://localhost:3000/addTransaction', {
         exchange_id: exchangeId,
         hash_code: hashCode,
       });

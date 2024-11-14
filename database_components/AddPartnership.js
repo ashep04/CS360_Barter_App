@@ -15,7 +15,7 @@ const AddPartnership = () => {
     }
 
     try {
-      const response = await axios.post('http://172.29.219.41:3000/addPartnership', {
+      const response = await axios.post('http://localhost:3000/addPartnership', {
         id: userId,
         partner_id: partnerId,
         status: partnerStatus,

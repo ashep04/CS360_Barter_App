@@ -14,7 +14,7 @@ const AccessPartnership = () => {
     }
 
     try {
-      const response = await axios.get('http://172.29.219.41:3000/deletePartnership', {
+      const response = await axios.get('http://localhost:3000/deletePartnership', {
         params: { id: userId, partner_id: partnerId },
       });
       Alert.alert('Success', 'Partnership deleted successfully');
