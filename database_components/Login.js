@@ -75,7 +75,7 @@ const LoginUser = () => {
         {
             // navigation.reset();
             // navigation.push('BarterBuy');
-            navigation.navigate('buyTabs/BarterBuy');
+            navigation.navigate('BarterBuy');
             //navigation.replace('BarterBuy');
         }
         else if (account.role == 'BarterSell')
