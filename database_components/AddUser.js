@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import axios from 'axios';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
+import axiosInstance from '../app/api/apiConfig'; // Import the Axios configuration
 
 const AddUser = () => {
   const [userId, setUserId] = useState('');
@@ -16,7 +17,7 @@ const AddUser = () => {
     }
 
     try {
-      const response = await axios.post('http://172.29.219.41:3000/addUser', {
+      const response = await axiosInstance.post('/addUser', {
         id: userId,
         username: username,
         password: password,

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import axios from 'axios';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
+import axiosInstance from '../app/api/apiConfig'; // Import the Axios configuration
 
 const AddPartnership = () => {
   const [userId, setUserId] = useState('');
@@ -17,7 +18,7 @@ const AddPartnership = () => {
     }
 
     try {
-      const response = await axios.post('http://172.29.219.41:3000/addPartnership', {
+      const response = await axiosInstance.post('/addPartnership', {
         id: userId,
         partner_id: partnerId,
         status: partnerStatus,

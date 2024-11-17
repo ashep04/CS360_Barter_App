@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import axios from 'axios';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
+import axiosInstance from '../app/api/apiConfig'; // Import the Axios configuration
 
 const AddExchanges = () => {
   const [sellerId, setSellerId] = useState('');
@@ -22,7 +23,7 @@ const AddExchanges = () => {
     }
 
     try {
-      const response = await axios.post('http://172.29.219.41:3000/addExchange', {
+      const response = await axiosInstance.post('/addExchange', {
         seller_id: sellerId,
         buyer_id: buyerId,
         seller_partner_id: sellerPartnerId || null,

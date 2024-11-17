@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import axios from 'axios';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
+import axiosInstance from '../app/api/apiConfig'; // Import the Axios configuration
 
 const DeleteUser = () => {
   const [userId, setUserId] = useState('');
@@ -14,7 +15,7 @@ const DeleteUser = () => {
     }
 
     try {
-      const response = await axios.post('http://172.29.219.41:3000/deleteUser', { id: userId });
+      const response = await axiosInstance.post('/deleteUser', { id: userId });
       Alert.alert('Success', 'User deleted successfully');
       setUserId('');
     } catch (error) {
