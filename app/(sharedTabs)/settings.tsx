@@ -17,6 +17,8 @@ export default function HomeScreen() {
   const [dataTransactions, setDataTransactions] = useState([]);
 
   const [loading, setLoading] = useState(true);
+  // Theme
+  const {currentTheme, toggleTheme} = useTheme();
 
   // Fetch data for users
   useEffect(() => {
@@ -91,9 +93,6 @@ export default function HomeScreen() {
     { id: '4', title: 'Service D', description: 'Inactive', status: 'On Hold' },
   ];
 
-  // Theme
-  const {currentTheme, toggleTheme} = useTheme();
-
 
   return (
     <View style={[styles.container, { backgroundColor: currentTheme.background }]}>
@@ -134,6 +133,9 @@ export default function HomeScreen() {
                       <Text style={[styles.itemLabel, { color: currentTheme.text }]}>Username: {item?.username || 'NA'}</Text>
                       {/* <Text style={[styles.itemLabel, { color: currentTheme.text }]}>{item?.username || 'NA'}</Text> */}
                       <Text style={{color: currentTheme.text}}>Password: {item?.password || 'NA'}</Text>
+                      <Text style={[styles.itemLabel, { color: currentTheme.text }]}>
+                        Type: {item?.role || 'NA'}
+                      </Text>
                       <Text style={[styles.itemLabel, { color: currentTheme.text }]}>
                         ID: {item?.id || 'NA'}
                       </Text>

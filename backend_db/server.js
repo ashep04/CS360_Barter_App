@@ -20,10 +20,10 @@ db.connect((err) => {
 // POST
 //
 app.post('/addUser', (req, res) => {
-    const { id, username, password } = req.body;
+    const { id, username, password, role } = req.body;
 
-    const query = 'INSERT INTO accounts (id, username, password) VALUES (?, ?, ?)';
-    db.execute(query, [id, username, password], (err, results) => {
+    const query = 'INSERT INTO accounts (id, username, password, role) VALUES (?, ?, ?, ?)';
+    db.execute(query, [id, username, password, role], (err, results) => {
         if (err) {
             console.error(err);
             res.status(500).send('Database query error');
