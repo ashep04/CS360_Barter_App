@@ -9,6 +9,10 @@ export default function SellTabsLayout() {
         name="BarterSell"
         options={{ title: "Sell", headerShown: true }}
       />
+      <Tabs.Screen
+        name="index"
+        options={{ title: "Home", headerShown: false }}
+      />
     </Tabs>
   );
 }

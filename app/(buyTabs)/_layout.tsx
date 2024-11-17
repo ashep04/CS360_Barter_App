@@ -7,8 +7,15 @@ export default function BuyTabsLayout() {
     <Tabs>
       <Tabs.Screen
         name="BarterBuy"
-        options={{ title: "Buy", headerShown: true }}
+        options={{ title: "Buy", headerShown: false }}
       />
+            <Tabs.Screen
+        name="index"
+        options={{ title: "Home", headerShown: false }}
+      />
+    <Tabs.Screen name="settings" options={{ headerShown: false }} />
+
     </Tabs>
+    
   );
 }
