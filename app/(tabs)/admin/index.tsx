@@ -7,7 +7,7 @@ import { Collapsible } from '@/components/Collapsible';
 import { Colors } from '@/constants/Colors'; // Import your Colors object
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
-import axiosInstance from '../api/apiConfig'; // Import the Axios configuration
+import axiosInstance from '../../api/apiConfig'; // Import the Axios configuration
 import AddUser from '@/database_components/AddUser'; // Import the AddUser component
 
 export default function HomeScreen() {
@@ -226,7 +226,7 @@ export default function HomeScreen() {
             </View>
 
             {/* Additional Row with Four Columns */}
-            {/* <View style={styles.row}>
+            <View style={styles.row}>
               <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
                 <Text style={[styles.titleText, { color: currentTheme.text }]}>Settings</Text>
                 <Text style={{ color: currentTheme.text }}>Additional Column 1</Text>
@@ -235,6 +235,8 @@ export default function HomeScreen() {
                 <Text style={[styles.titleText, { color: currentTheme.text }]}>Settings</Text>
                 <Text style={{ color: currentTheme.text }}>Additional Column 2</Text>
               </View>
+            </View>
+            <View style={styles.row}>
               <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
                 <Text style={[styles.titleText, { color: currentTheme.text }]}>Settings</Text>
                 <Text style={{ color: currentTheme.text }}>Additional Column 3</Text>
@@ -243,7 +245,7 @@ export default function HomeScreen() {
                 <Text style={[styles.titleText, { color: currentTheme.text }]}>Settings</Text>
                 <Text style={{ color: currentTheme.text }}>Additional Column 4</Text>
               </View>
-            </View> */}
+            </View>
 
           </ScrollView>
         </View>

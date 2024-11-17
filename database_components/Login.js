@@ -26,10 +26,10 @@ const LoginUser = () => {
   const [password, setPassword] = useState('');
   const {currentTheme, toggleTheme} = useTheme();
   const { login, setRole, setIsLoggedIn} = useAuth();
-  const router = useRouter();
   const [loginError, setLoginError] = useState('');
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
+  const router = useRouter();
 
   // Fetch data for users
   const [dataAccounts, setDataAccounts] = useState([]);
@@ -73,16 +73,15 @@ const LoginUser = () => {
         Alert.alert('Success', 'Login Successful');
         if (account.role == 'BarterBuy')
         {
+          router.push("/(buyTabs)");
             // navigation.reset();
             // navigation.push('BarterBuy');
-            navigation.navigate('BarterBuy');
+            //navigation.navigate('BarterBuy');
             //navigation.replace('BarterBuy');
         }
         else if (account.role == 'BarterSell')
-        {
-            navigation.reset();
-            
-            navigation.navigate('BarterSell');
+        {            
+            //navigation.navigate('BarterSell');
         }
 
       } else {

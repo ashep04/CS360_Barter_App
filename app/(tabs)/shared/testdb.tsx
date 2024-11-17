@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList, ScrollView, Image, Platform } from 'react-native';
-import axiosInstance from '../api/apiConfig'; // Import the Axios configuration
+import axiosInstance from '../../api/apiConfig'; // Import the Axios configuration
 
 // Components
 // import LoginUser from '@/database_components/AddUser'; // Import the AddUser component

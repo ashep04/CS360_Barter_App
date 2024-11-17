@@ -3,6 +3,7 @@ import { StyleSheet, SafeAreaView, StatusBar, View } from 'react-native';
 import { ThemeProvider, useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 import { AuthProvider, useAuth } from '@/components/AuthContext';
 import React from 'react';
+import { useRouter } from "expo-router";
 
 export default function RootLayout() {
 
@@ -20,34 +21,54 @@ function AppContent() {
   //const {isLoggedIn} = false;
     console.log("isLoggedIn:", isLoggedIn); // Debugging line
     console.log("role:", role); // Debugging line
+    const router = useRouter();
 
     return (
-      <Stack screenOptions={{ headerShown: false }}>
-        {!isLoggedIn ? (
-          <>
-            {/* Stack based navigation for login */}
-            <Stack.Screen name="home" options={{ title: 'Login' }} />
-            {/* <Stack.Screen name="signup" options={{ title: 'Sign Up' }} /> */}
-          </>
-        ) : (
-          <>
-            {/* Once logged in, switch to Tabs navigation */}
-            <Tabs screenOptions={{ headerShown: false }}>
-              {/* Show shared tabs */}
-              <Tabs.Screen name="(sharedTabs)" options={{ headerShown: false }} />
+
+    <Stack>
+      <Stack.Screen
+          name="(tabs)"
+          options={{
+              headerShown: false
+          }}
+      />
+    </Stack>
+
+      // <Stack screenOptions={{ headerShown: false }}>
+      //   {!isLoggedIn ? (
+      //     <>
+      //       {/* Stack based navigation for login */}
+      //       <Stack.Screen name="home" options={{ title: 'Login' }} />
+      //       {/* <Stack.Screen name="signup" options={{ title: 'Sign Up' }} /> */}
+      //     </>
+      //   ) : (
+      //     <>
+      //       {/* Once logged in, switch to Tabs navigation */}
+      //       <Tabs screenOptions={{ headerShown: false }}>
+      //         {/* Show shared tabs */}
+      //         <Tabs.Screen name="(sharedTabs)" options={{ headerShown: false }} />
               
-              {/* Role-specific tabs */}
-              {role === 'BarterBuy' && (
-                <Tabs.Screen name="(buyTabs)" options={{ headerShown: false }} />
-              )}
+      //         {/* Role-specific tabs */}
+      //         {role === 'BarterBuy' && (
+      //           <Tabs.Screen name="(buyTabs)" options={{ headerShown: false }} />
+      //         )}
   
-              {role === 'BarterSell' && (
-                <Tabs.Screen name="(sellTabs)" options={{ headerShown: false }} />
-              )}
-            </Tabs>
-          </>
-        )}
-      </Stack>
+      //         {role === 'BarterSell' && (
+      //           <Tabs.Screen name="(sellTabs)" options={{ headerShown: false }} />
+      //         )}
+      //       </Tabs>
+      //     </>
+      //   )}
+      // </Stack>
+
+
+
+    // <Stack screenOptions={{ headerShown: false }}>
+    //   <Stack.Screen name="(startTabs)" />
+    //   <Stack.Screen name="(sharedTabs)" />
+    //   <Stack.Screen name="(buyTabs)" />
+    //   <Stack.Screen name="(sellTabs)" />
+    // </Stack>
     );
 }
   // return (

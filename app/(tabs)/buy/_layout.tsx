@@ -13,7 +13,7 @@ export default function BuyTabsLayout() {
         name="index"
         options={{ title: "Home", headerShown: false }}
       />
-    <Tabs.Screen name="settings" options={{ headerShown: false }} />
+    <Tabs.Screen name="(sharedTabs)" options={{ headerShown: false }} />
 
     </Tabs>
     
