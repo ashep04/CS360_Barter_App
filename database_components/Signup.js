@@ -198,7 +198,7 @@ useFocusEffect(
 
         <Text style={styles.navigation}>
           Already have an account?{' '}
-          <Text style={{ color: 'blue' }} onPress={() => navigation.navigate('login')}>
+          <Text style={{ color: 'blue' }} onPress={() => navigation.navigate('index')}>
             Login Here
           </Text>
         </Text>

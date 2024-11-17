@@ -6,20 +6,19 @@ import { ThemeProvider } from '@react-navigation/native';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 
 import React from 'react';
-import { Tabs } from 'expo-router';
+import { Tabs, Stack } from 'expo-router';
 
 export default function SharedTabsLayout() {
   return (
-    <Tabs
+    <Stack
       screenOptions={{
         headerShown: false, // Disable headers globally for the tabs
       }}
     >
-      <Tabs.Screen name="home" options={{ title: 'Home' }} />
-      <Tabs.Screen name="testdb" options={{ title: 'Test DB' }} />
-      <Tabs.Screen name="settings" options={{ title: 'Settings' }} />
+      <Stack.Screen name="login" options={{ title: 'Login' }} />
+      {/* <Tabs.Screen name="signup" options={{ title: 'Test DB' }} /> */}
       
-    </Tabs>
+    </Stack>
   );
 }
 //   return (

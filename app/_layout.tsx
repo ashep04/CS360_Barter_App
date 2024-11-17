@@ -8,13 +8,8 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider>
-          <AuthProvider>
-            {/* <Stack>
-                <Stack.Screen name="index" />
-                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-                <Stack.Screen name="+not-found" />
-            </Stack> */}
-            <AppContent/>
+      <AuthProvider>
+        <AppContent/>
       </AuthProvider>
     </ThemeProvider>
   );
@@ -26,30 +21,34 @@ function AppContent() {
     console.log("isLoggedIn:", isLoggedIn); // Debugging line
     console.log("role:", role); // Debugging line
 
-  return (
-    <Stack screenOptions={{ headerShown: false }}>
-      {/* Show login screen if not logged in */}
-      {!isLoggedIn ? (
-        <Tabs.Screen name="login" />
-      ) : (
-        <>
-          <Tabs.Screen name="(sharedTabs)" options={{ headerShown: false }} />
-          {/* Show tabs based on the role if logged in */}
-          { role === 'BarterBuy' && (
-            <>
-            <Tabs.Screen name="(buyTabs)" options={{ headerShown: false }} />
-            </>
-          )}
-
-          { role === 'BarterSell' && (
-            <>
-            <Tabs.Screen name="(sellTabs)" options={{ headerShown: false }} />
-            </>
-          )}
-        </>
-      )}
-    </Stack>
-  );
+    return (
+      <Stack screenOptions={{ headerShown: false }}>
+        {!isLoggedIn ? (
+          <>
+            {/* Stack based navigation for login */}
+            <Stack.Screen name="home" options={{ title: 'Login' }} />
+            {/* <Stack.Screen name="signup" options={{ title: 'Sign Up' }} /> */}
+          </>
+        ) : (
+          <>
+            {/* Once logged in, switch to Tabs navigation */}
+            <Tabs screenOptions={{ headerShown: false }}>
+              {/* Show shared tabs */}
+              <Tabs.Screen name="(sharedTabs)" options={{ headerShown: false }} />
+              
+              {/* Role-specific tabs */}
+              {role === 'BarterBuy' && (
+                <Tabs.Screen name="(buyTabs)" options={{ headerShown: false }} />
+              )}
+  
+              {role === 'BarterSell' && (
+                <Tabs.Screen name="(sellTabs)" options={{ headerShown: false }} />
+              )}
+            </Tabs>
+          </>
+        )}
+      </Stack>
+    );
 }
   // return (
   //   <Stack screenOptions={{ headerShown: false }}>

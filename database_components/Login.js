@@ -68,6 +68,14 @@ const LoginUser = () => {
         login(account.role);
         setLoginError('Login successful!');
         Alert.alert('Success', 'Login Successful');
+        if (account.role == 'BarterBuy')
+        {
+            navigation.navigate('BarterBuy');
+        }
+        else if (account.role == 'BarterSell')
+        {
+            navigation.navigate('BarterSell');
+        }
 
       } else {
         setLoginError('Invalid email/username or password.');
