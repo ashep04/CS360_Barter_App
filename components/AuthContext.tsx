@@ -1,4 +1,5 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { useEffect, createContext, useState, useContext } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type AuthContextType = {
   isLoggedIn: boolean;
@@ -13,15 +14,32 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [role, setRole] = useState<'BarterBuy' | 'BarterSell' | null>(null);
 
+  useEffect(() => {
+    // Check if user is logged in on app start
+    const checkUserStatus = async () => {
+      const userRole = await AsyncStorage.getItem('role');
+      const userLoggedIn = await AsyncStorage.getItem('isLoggedIn');
+      if (userLoggedIn === 'true') {
+        setIsLoggedIn(true);
+        setRole(userRole as 'BarterBuy' | 'BarterSell' | null);
+      }
+    };
+    checkUserStatus();
+  }, []);
+
   // No need to load from SecureStore anymore, so just initialize as false
-  const login = (role: 'BarterBuy' | 'BarterSell') => {
+  const login = async (role: 'BarterBuy' | 'BarterSell') => {
     setIsLoggedIn(true);
     setRole(role);
+    await AsyncStorage.setItem('isLoggedIn', 'true');
+    await AsyncStorage.setItem('role', role);
   };
 
-  const logout = () => {
+  const logout = async () => {
     setIsLoggedIn(false);
     setRole(null);
+    await AsyncStorage.removeItem('isLoggedIn');
+    await AsyncStorage.removeItem('role');
   };
 
   return (

@@ -25,10 +25,11 @@ const LoginUser = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const {currentTheme, toggleTheme} = useTheme();
-  const { login } = useAuth();
+  const { login, setRole, setIsLoggedIn} = useAuth();
   const router = useRouter();
   const [loginError, setLoginError] = useState('');
   const [loading, setLoading] = useState(true);
+  const navigation = useNavigation();
 
   // Fetch data for users
   const [dataAccounts, setDataAccounts] = useState([]);
@@ -65,15 +66,22 @@ const LoginUser = () => {
       );
   
       if (account) {
+        //setRole(account.role);
+        //setIsLoggedIn(true);
         login(account.role);
         setLoginError('Login successful!');
         Alert.alert('Success', 'Login Successful');
         if (account.role == 'BarterBuy')
         {
-            navigation.navigate('BarterBuy');
+            // navigation.reset();
+            // navigation.push('BarterBuy');
+            navigation.navigate('buyTabs/BarterBuy');
+            //navigation.replace('BarterBuy');
         }
         else if (account.role == 'BarterSell')
         {
+            navigation.reset();
+            
             navigation.navigate('BarterSell');
         }
 
