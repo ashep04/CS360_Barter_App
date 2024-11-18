@@ -212,7 +212,7 @@ export default function HomeScreen() {
                 <TouchableOpacity style={styles.button}>
                   <Text style={[styles.buttonText, { color: currentTheme.text }]}>Change Password</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={handleLogout}>
                   <Text style={[styles.buttonText, { color: currentTheme.text }]}>Log Out</Text>
                 </TouchableOpacity>
               </View>
