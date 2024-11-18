@@ -15,7 +15,7 @@ export default function SharedTabsLayout() {
         headerShown: false, // Disable headers globally for the tabs
       }}
     >
-      <Tabs.Screen name="home" options={{ title: 'Home' }} />
+      <Tabs.Screen name="index" options={{ title: 'Home' }} />
       <Tabs.Screen name="testdb" options={{ title: 'Test DB' }} />
       <Tabs.Screen name="settings" options={{ title: 'Settings' }} />
       

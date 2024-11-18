@@ -18,10 +18,9 @@ export default function RootLayout() {
 
 function AppContent() {
   const { isLoggedIn, role } = useAuth();
-  //const {isLoggedIn} = false;
-    console.log("isLoggedIn:", isLoggedIn); // Debugging line
-    console.log("role:", role); // Debugging line
-    const router = useRouter();
+  console.log("isLoggedIn:", isLoggedIn); // Debugging line
+  console.log("role:", role); // Debugging line
+  const router = useRouter();
 
     return (
 
@@ -32,6 +31,8 @@ function AppContent() {
               headerShown: false
           }}
       />
+      <Stack.Screen name="index" options={{ title: 'Login' }} />
+      <Stack.Screen name="signup" options={{ title: 'Signup' }} />
     </Stack>
 
       // <Stack screenOptions={{ headerShown: false }}>

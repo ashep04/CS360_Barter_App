@@ -6,10 +6,6 @@ export default function SellTabsLayout() {
   return (
     <Tabs>
       <Tabs.Screen
-        name="BarterSell"
-        options={{ title: "Sell", headerShown: true }}
-      />
-      <Tabs.Screen
         name="index"
         options={{ title: "Home", headerShown: false }}
       />

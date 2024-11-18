@@ -8,17 +8,22 @@ import { Colors } from '@/constants/Colors'; // Import your Colors object
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 import axiosInstance from '../../api/apiConfig'; // Import the Axios configuration
-import AddUser from '@/database_components/AddUser'; // Import the AddUser component
+import { useAuth } from '@/components/AuthContext';
 
 export default function HomeScreen() {
   
   const [dataAccounts, setDataAccounts] = useState([]);
   const [dataPartners, setDataPartners] = useState([]);
   const [dataTransactions, setDataTransactions] = useState([]);
-
+  const { logout, login,} = useAuth();
   const [loading, setLoading] = useState(true);
   // Theme
   const {currentTheme, toggleTheme} = useTheme();
+
+  const handleLogout = async () => 
+    {
+      logout();
+    }
 
   // Fetch data for users
   useEffect(() => {

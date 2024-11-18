@@ -25,21 +25,20 @@ export default function SharedTabsLayout() {
     // </Stack>
     <Tabs screenOptions={{ headerShown: false }}>
     {!isLoggedIn ? (
+      <>
         <Tabs.Screen name="index" options={{ title: 'Login' }} />
+      </>
     ) : (
       <>
-        {/* Once logged in, switch to Tabs navigation */}
         <Tabs screenOptions={{ headerShown: false }}>
-          {/* Show shared tabs */}
-          <Tabs.Screen name="shared" options={{ headerShown: false }} />
+          <Tabs.Screen name="Shared" options={{ headerShown: false }} />
           
-          {/* Role-specific tabs */}
           {role === 'BarterBuy' && (
-            <Tabs.Screen name="buy" options={{ headerShown: false }} />
+            <Tabs.Screen name="Buy" options={{ headerShown: false }} />
           )}
 
           {role === 'BarterSell' && (
-            <Tabs.Screen name="sell" options={{ headerShown: false }} />
+            <Tabs.Screen name="Sell" options={{ headerShown: false }} />
           )}
         </Tabs>
       </>

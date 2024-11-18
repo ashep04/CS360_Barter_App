@@ -1,6 +1,6 @@
 // app/login.tsx
 import React from 'react';
-import { View, Text, StyleSheet, Image, Platform, TouchableOpacity } from 'react-native';
+import {Button, View, Text, StyleSheet, Image, Platform, TouchableOpacity } from 'react-native';
 import { useAuth } from '@/components/AuthContext';
 import { useRouter } from "expo-router";
 import LoginUser from "@/database_components/Login";
@@ -8,10 +8,11 @@ import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hoo
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 export default function Login() {
-
   const {currentTheme, toggleTheme} = useTheme();
+  const navigation = useNavigation();
 
   // const handleLogin = (role) => {
   //   login(role); // Save role in AuthContext
@@ -35,7 +36,7 @@ export default function Login() {
       </ThemedView>
 
       <LoginUser/>
-      
+
     </ParallaxScrollView>
       <View style={[styles.footer, { backgroundColor: currentTheme.background }]}>
         <Text style={[styles.baseText, { color: currentTheme.text }]}>

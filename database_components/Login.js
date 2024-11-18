@@ -25,7 +25,7 @@ const LoginUser = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const {currentTheme, toggleTheme} = useTheme();
-  const { login, setRole, setIsLoggedIn} = useAuth();
+  const { logout, login, setRole, setIsLoggedIn} = useAuth();
   const [loginError, setLoginError] = useState('');
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
@@ -54,6 +54,12 @@ const LoginUser = () => {
   //   if (role === "BarterSell") router.replace("(sellTabs)/BarterSell");
   // };
   
+  const handleLogout = async () => 
+    {
+      logout();
+      // navigation.navigate('index');
+    }
+
   const handleLogin = async () => {
     setLoginError('');
     if (!userId || !username || !password) {
@@ -73,15 +79,15 @@ const LoginUser = () => {
         Alert.alert('Success', 'Login Successful');
         if (account.role == 'BarterBuy')
         {
-          router.push("/(buyTabs)");
+          //router.push("/(buyTabs)");
             // navigation.reset();
             // navigation.push('BarterBuy');
-            //navigation.navigate('BarterBuy');
+          navigation.navigate('(Buy)');
             //navigation.replace('BarterBuy');
         }
         else if (account.role == 'BarterSell')
         {            
-            //navigation.navigate('BarterSell');
+          navigation.navigate('Sell');
         }
 
       } else {
@@ -114,6 +120,9 @@ const LoginUser = () => {
       {loginError ? <Text style={styles.errorText}>{loginError}</Text> : null}
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={styles.loginButtonText}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.loginButton} onPress={handleLogout}>
+          <Text style={styles.loginButtonText}>Temporary Logout</Text>
         </TouchableOpacity>
 
         <Text style={styles.navigation}>
