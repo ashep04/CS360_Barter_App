@@ -7,8 +7,7 @@ import { Collapsible } from '@/components/Collapsible';
 import { Colors } from '@/constants/Colors'; // Import your Colors object
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
-import axiosInstance from '../../api/apiConfig'; // Import the Axios configuration
-import AddUser from '@/database_components/AddUser'; // Import the AddUser component
+import axiosInstance from '../../../api/apiConfig'; // Import the Axios configuration
 
 export default function HomeScreen() {
   

@@ -31,8 +31,8 @@ function AppContent() {
               headerShown: false
           }}
       />
-      <Stack.Screen name="index" options={{ title: 'Login' }} />
-      <Stack.Screen name="signup" options={{ title: 'Signup' }} />
+      <Stack.Screen name="index" options={{ title: 'Login', headerShown: false}} />
+      <Stack.Screen name="signup" options={{ title: 'Signup' , headerShown: false}} />
     </Stack>
 
       // <Stack screenOptions={{ headerShown: false }}>

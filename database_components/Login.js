@@ -57,6 +57,11 @@ const LoginUser = () => {
   const handleLogout = async () => 
     {
       logout();
+      setPassword('');
+      setLoginError('');
+      // setUsername('');
+      // setUserId('');
+      // setPassword('');
       // navigation.navigate('index');
     }
 
@@ -77,17 +82,24 @@ const LoginUser = () => {
         login(account.role);
         setLoginError('Login successful!');
         Alert.alert('Success', 'Login Successful');
+        setPassword('');
+
         if (account.role == 'BarterBuy')
         {
-          //router.push("/(buyTabs)");
-            // navigation.reset();
+          router.push("/shared");
+          //navigation.reset();
             // navigation.push('BarterBuy');
-          navigation.navigate('(Buy)');
+          //navigation.navigate('buy');
             //navigation.replace('BarterBuy');
         }
         else if (account.role == 'BarterSell')
         {            
-          navigation.navigate('Sell');
+          //navigation.navigate('sell');
+          router.push("/shared");
+        }
+        else if (account.role == 'admin')
+        {
+          router.push("/shared")
         }
 
       } else {

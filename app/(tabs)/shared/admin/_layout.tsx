@@ -4,21 +4,49 @@ import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { ThemeProvider } from '@react-navigation/native';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
-
+import { AuthProvider, useAuth } from '@/components/AuthContext';
+import { useRouter } from "expo-router";
+import { View, Text } from 'react-native';
 import React from 'react';
 import { Tabs } from 'expo-router';
 
-export default function SharedTabsLayout() {
-  return (
-    <Tabs
+export default function AdminTabsLayout() {
+  const { isLoggedIn, role } = useAuth();
+
+  const router = useRouter();
+
+  if (isLoggedIn && role === 'admin') {
+    return (
+      <Tabs
       screenOptions={{
-        headerShown: false, // Disable headers globally for the tabs
+        tabBarStyle: { display: 'none' }, // Hides the tab bar
       }}
-    >
-      <Tabs.Screen name="index" options={{ title: 'Dashboard' }} />
+      >
+      <Tabs.Screen
+          name="index"
+          options={{ title: "Admin", headerShown: false }}
+        />
+      </Tabs>
+    );
+  }
+  const FallbackScreen = () => {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Access Denied</Text>
+      </View>
+    );
+  };
+  return <FallbackScreen/>;
+  // return (
+  //   <Tabs
+  //     screenOptions={{
+  //       headerShown: false, // Disable headers globally for the tabs
+  //     }}
+  //   >
+  //     <Tabs.Screen name="index" options={{ title: 'Dashboard' }} />
       
-    </Tabs>
-  );
+  //   </Tabs>
+  // );
 }
 //   return (
 //     <Tabs

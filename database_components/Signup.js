@@ -101,6 +101,10 @@ useFocusEffect(
 
       Alert.alert('Signup successful', `Account type: ${accountType}`);
       setSignupError('Successfully added user!');
+      setUsername('');
+      setEmail('');
+      setPassword('');
+      setPassword2('');
 
     } catch (error) {
     setSignupError('Failed to add user.');

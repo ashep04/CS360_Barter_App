@@ -13,7 +13,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [role, setRole] = useState<'BarterBuy' | 'BarterSell' | null>(null);
+  const [role, setRole] = useState<'BarterBuy' | 'BarterSell' | 'admin' | null>(null);
   const navigation = useNavigation();
 
   useEffect(() => {
