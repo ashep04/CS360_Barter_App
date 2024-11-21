@@ -106,7 +106,7 @@ const handleSignup = () => {
 
       <View style={[styles.signupContainer, { backgroundColor: currentTheme.background }]}>
         <TextInput
-          style={styles.input}
+          style={[styles.input, { color: currentTheme.text }]}
           placeholder="Username"
           value={username}
           onChangeText={setUsername}
@@ -115,7 +115,7 @@ const handleSignup = () => {
         {usernameError ? <Text style={styles.errorText}>{usernameError}</Text> : null}
 
         <TextInput
-          style={styles.input}
+          style={[styles.input, { color: currentTheme.text }]}
           placeholder="Email"
           value={email}
           onChangeText={setEmail}
@@ -124,7 +124,7 @@ const handleSignup = () => {
         {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
 
         <TextInput
-          style={styles.input}
+          style={[styles.input, { color: currentTheme.text }]}
           placeholder="Password"
           value={password}
           onChangeText={setPassword}
@@ -133,7 +133,7 @@ const handleSignup = () => {
         {passwordError ? <Text style={styles.errorText}>{passwordError}</Text> : null}
 
         <TextInput
-          style={styles.input}
+          style={[styles.input, { color: currentTheme.text }]}
           placeholder="Confirm Password"
           value={password2}
           onChangeText={setPassword2}
