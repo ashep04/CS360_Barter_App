@@ -7,16 +7,23 @@ import { Collapsible } from '@/components/Collapsible';
 import { Colors } from '@/constants/Colors'; // Import your Colors object
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
-import axiosInstance from '../api/apiConfig'; // Import the Axios configuration
-import AddUser from '@/database_components/AddUser'; // Import the AddUser component
+import axiosInstance from '../../api/apiConfig'; // Import the Axios configuration
+import { useAuth } from '@/components/AuthContext';
 
 export default function HomeScreen() {
   
   const [dataAccounts, setDataAccounts] = useState([]);
   const [dataPartners, setDataPartners] = useState([]);
   const [dataTransactions, setDataTransactions] = useState([]);
-
+  const { logout, login,} = useAuth();
   const [loading, setLoading] = useState(true);
+  // Theme
+  const {currentTheme, toggleTheme} = useTheme();
+
+  const handleLogout = async () => 
+    {
+      logout();
+    }
 
   // Fetch data for users
   useEffect(() => {
@@ -91,9 +98,6 @@ export default function HomeScreen() {
     { id: '4', title: 'Service D', description: 'Inactive', status: 'On Hold' },
   ];
 
-  // Theme
-  const {currentTheme, toggleTheme} = useTheme();
-
 
   return (
     <View style={[styles.container, { backgroundColor: currentTheme.background }]}>
@@ -134,6 +138,9 @@ export default function HomeScreen() {
                       <Text style={[styles.itemLabel, { color: currentTheme.text }]}>Username: {item?.username || 'NA'}</Text>
                       {/* <Text style={[styles.itemLabel, { color: currentTheme.text }]}>{item?.username || 'NA'}</Text> */}
                       <Text style={{color: currentTheme.text}}>Password: {item?.password || 'NA'}</Text>
+                      <Text style={[styles.itemLabel, { color: currentTheme.text }]}>
+                        Type: {item?.role || 'NA'}
+                      </Text>
                       <Text style={[styles.itemLabel, { color: currentTheme.text }]}>
                         ID: {item?.id || 'NA'}
                       </Text>
@@ -205,7 +212,7 @@ export default function HomeScreen() {
                 <TouchableOpacity style={styles.button}>
                   <Text style={[styles.buttonText, { color: currentTheme.text }]}>Change Password</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={handleLogout}>
                   <Text style={[styles.buttonText, { color: currentTheme.text }]}>Log Out</Text>
                 </TouchableOpacity>
               </View>

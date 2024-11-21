@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList, ScrollView, Image, Platform } from 'react-native';
-import axiosInstance from '../api/apiConfig'; // Import the Axios configuration
+import axiosInstance from '../../api/apiConfig'; // Import the Axios configuration
 
 // Components
-import AddUser from '@/database_components/AddUser'; // Import the AddUser component
+// import LoginUser from '@/database_components/AddUser'; // Import the AddUser component
 import AddPartnership from '@/database_components/AddPartnership'; // Import the AddUser component
 import AccessPartnership from '@/database_components/AccessPartnership'; // Import the AddUser component
 import AddTransaction from '@/database_components/AddTransactions'; // Import the AddUser component
@@ -50,7 +50,7 @@ export default function HomeScreen() {
           />
         }
       >
-        <AddUser /> 
+        {/* <AddUser />  */}
         <AddPartnership />
         <AccessPartnership />
         <AddExchange/>
