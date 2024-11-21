@@ -9,9 +9,14 @@ Requirements for emulator:
 - Make sure the command adb and adb --version works in powershell on windows.
 
 ### To run the project, navigate to the directory and run the following:
-- npm i
+- npm i 
 - npx expo start
-  
+
+### To run the database, navigate to the directory and setup the following:
+- Create a .env with DB_HOST, DB_PORT, DB_PASSWORD, DB_USER, DB_NAME
+- Setup a MySQL server, some options include XAMPP or MySQL configurator. 
+- Run 'node backend_db/server.js'
+
 ### Then either:
 - Hit the 'a' key to launch Android
 - Hit the 'w' key to launch web
