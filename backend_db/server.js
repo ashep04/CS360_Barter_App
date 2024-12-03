@@ -101,6 +101,25 @@ app.post('/addPartnership', (req, res) => {
     });
 });
 
+app.post('/deletePartnership', (req, res) => {
+  const { id, partner_id } = req.body;
+
+  // SQL query to delete the partnership where the user ID and partner ID match
+  const query = 'DELETE FROM partnerships WHERE id = ? AND partner_id = ?';
+  db.execute(query, [id, partner_id], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Database query error');
+    }
+
+    if (results.affectedRows > 0) {
+      res.status(200).send('Partnership deleted successfully');
+    } else {
+      res.status(404).send('Partnership deleted');
+    }
+  });
+});
+
 //
 // END POST
 //------------------------------------------------------------------------

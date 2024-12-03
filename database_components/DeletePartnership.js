@@ -1,27 +1,32 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Alert, StyleSheet } from 'react-native';
+import { View, TextInput, Button, Alert, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import axios from 'axios';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 import axiosInstance from '../app/api/apiConfig'; // Import the Axios configuration
+import { useAuth } from '@/components/AuthContext';
 
-const AccessPartnership = () => {
-  const [userId, setUserId] = useState('');
+const DeletePartnership = () => {
+  // const [userId, setUserId] = useState('');
   const [partnerId, setPartnerId] = useState('');
   const [partnershipStatus, setPartnershipStatus] = useState('');
   const {currentTheme, toggleTheme} = useTheme();
+  const { isLoggedIn, role, username, userId, password } = useAuth();
 
   const handleDeletePartnership = async () => {
-    if (!userId || !partnerId) {
-      Alert.alert('Error', 'Both User ID and Partner ID are required');
+    if (!partnerId) {
+      Alert.alert('Error', 'Partner ID are required');
       return;
     }
 
     try {
-      const response = await axiosInstance.get('/deletePartnership', {
-        params: { id: userId, partner_id: partnerId },
+      const response = await axiosInstance.post('/deletePartnership', {
+        id: userId,
+        partner_id: partnerId,
+        // params: { id: userId, partner_id: partnerId },
       });
       Alert.alert('Success', 'Partnership deleted successfully');
       setPartnershipStatus('');
+      setPartnerId('');
     } catch (error) {
       Alert.alert('Error', 'Failed to delete partnership');
     }
@@ -29,20 +34,23 @@ const AccessPartnership = () => {
 
   return (
     <View style={styles.container}>
-      <TextInput
+      {/* <TextInput
         style={styles.input}
         placeholder="Enter User ID"
         value={userId}
         onChangeText={setUserId}
-      />
+      /> */}
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter Partner ID"
         value={partnerId}
         onChangeText={setPartnerId}
       />
-      <Button title="Delete Partnership" onPress={handleDeletePartnership} />
-      {partnershipStatus && <Text>Status: {partnershipStatus}</Text>}
+      <TouchableOpacity style={styles.loginButton} onPress={handleDeletePartnership}>
+          <Text style={styles.loginButtonText}>Delete Partner</Text>
+      </TouchableOpacity>
+      {/* <Button title="Delete Partnership" onPress={handleDeletePartnership} />
+      {partnershipStatus && <Text>Status: {partnershipStatus}</Text>} */}
     </View>
   );
 };
@@ -60,6 +68,17 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     paddingLeft: 8,
   },
+  loginButton: {
+    backgroundColor: '#577399',
+    paddingVertical: 10,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  loginButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
 });
 
-export default AccessPartnership;
+export default DeletePartnership;

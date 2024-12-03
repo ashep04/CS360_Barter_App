@@ -11,11 +11,13 @@ import axiosInstance from '../../api/apiConfig'; // Import the Axios configurati
 import { useAuth } from '@/components/AuthContext';
 
 import AddPartnership from '@/database_components/AddPartnership'; // Import the AddUser component
+import DeletePartnership from '@/database_components/DeletePartnership'; // Import the AddUser component
+
 import AccessPartnership from '@/database_components/AccessPartnership'; // Import the AddUser component
 import AddTransaction from '@/database_components/AddTransactions'; // Import the AddUser component
 import AddExchange from '@/database_components/AddExchanges'; // Import the AddUser component
+// import { useRefresh } from '@/components/RefreshContext';
 
-import { getRefreshFlag, clearRefreshFlag } from '@/utils/refresh';
 
 export default function HomeScreen() {
   const { isLoggedIn, role, username, userId, password } = useAuth();
@@ -24,7 +26,7 @@ export default function HomeScreen() {
   const [dataTransactions, setDataTransactions] = useState([]);
   const { logout, login,} = useAuth();
   const [loading, setLoading] = useState(true);
-  const [refresh, setRefresh] = useState(false);
+  // const { refresh, setRefresh } = useRefresh();
 
 
   console.log("isLoggedIn:", isLoggedIn); // Debugging line
@@ -51,19 +53,6 @@ export default function HomeScreen() {
   // const [dataAccounts, setDataAccounts] = useState<Account[]>([]); // Specify type for accounts
   // const [dataPartners, setDataPartners] = useState<Partnership[]>([]); // Specify type for partnerships
 
-  useEffect(() => {
-    const checkRefresh = async () => {
-      const shouldRefresh = await getRefreshFlag();
-      if (shouldRefresh) {
-        // Trigger data re-fetch
-        setRefresh((prev) => !prev); 
-        await clearRefreshFlag(); // Clear the flag
-      }
-    };
-  
-    checkRefresh();
-  }, []);
-
   const handleLogout = async () => 
     {
       logout();
@@ -83,7 +72,7 @@ export default function HomeScreen() {
     };
 
     fetchData();
-  }, [refresh]);
+  }, []);
 
   // Fetch data for partnerships
   useEffect(() => {
@@ -99,7 +88,7 @@ export default function HomeScreen() {
     };
 
     fetchData();
-  }, [refresh]);
+  }, []);
 
   // Fetch data for transactions
   useEffect(() => {
@@ -202,16 +191,17 @@ export default function HomeScreen() {
               )
               .map((item) => (
                 <View key={item.id} style={styles.item}>
-                  {/* <Text style={[styles.itemLabel, { color: currentTheme.text }]}>
-                    ID 1: {item?.id || 'NA'}
-                  </Text> */}
                   <Text style={[styles.itemLabel, { color: currentTheme.text }]}>
-                    Parter ID: {item?.partner_id || 'NA'}
+                    ID 1: {item?.id || 'NA'}
+                  </Text>
+                  <Text style={[styles.itemLabel, { color: currentTheme.text }]}>
+                    ID 2: {item?.partner_id || 'NA'}
                   </Text>
                 </View>
               ))
           )}
           <AddPartnership />
+          <DeletePartnership/>
         </View>
       </View>
 
