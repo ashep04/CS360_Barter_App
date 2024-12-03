@@ -11,9 +11,14 @@ import React from 'react';
 import { Tabs } from 'expo-router';
 
 export default function AdminTabsLayout() {
-  const { isLoggedIn, role } = useAuth();
 
   const router = useRouter();
+  const { isLoggedIn, role, username, userId, password } = useAuth();
+  console.log("isLoggedIn:", isLoggedIn); // Debugging line
+  console.log("role:", role); // Debugging line
+  console.log("username: ", username);
+  console.log("userId: ", userId);
+  console.log("password: ", password);
 
   if (isLoggedIn && role === 'admin') {
     return (
