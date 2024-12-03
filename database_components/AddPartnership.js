@@ -3,6 +3,7 @@ import { View, TextInput, Button, Alert, StyleSheet, TouchableOpacity, Text } fr
 import axios from 'axios';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 import axiosInstance from '../app/api/apiConfig'; // Import the Axios configuration
+import { setRefreshFlag } from '@/utils/refresh';
 
 const AddPartnership = () => {
   const [userId, setUserId] = useState('');
@@ -12,6 +13,7 @@ const AddPartnership = () => {
 
 
   const handleAddPartnership = async () => {
+    setPartnerStatus('accepted');
     if (!userId || !partnerId) {
       Alert.alert('Error', 'Both User ID and Partner ID are required');
       return;
@@ -27,6 +29,7 @@ const AddPartnership = () => {
       Alert.alert('Success', 'Partnership added successfully');
       setUserId('');
       setPartnerId('');
+      setRefreshFlag(true);
     } catch (error) {
       Alert.alert('Error', 'Failed to add partnership');
     }
@@ -58,21 +61,23 @@ const AddPartnership = () => {
       />
 
       <View style={styles.statusContainer}>
-        <Text
+        {/* <Text
         style={[styles.input, { color: currentTheme.text }]}>
           Status: {partnerStatus}
-        </Text>
+        </Text> */}
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={setStatusPending}>
+          {/* <TouchableOpacity style={styles.button} onPress={setStatusPending}>
             <Text style={[styles.buttonText, {color: currentTheme.text}]}>Pending</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={setStatusAccepted}>
             <Text style={[styles.buttonText, {color: currentTheme.text}]}>Accepted</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
 
-      <Button title="Add Partnership" onPress={handleAddPartnership} />
+      <TouchableOpacity style={styles.loginButton} onPress={handleAddPartnership}>
+          <Text style={styles.loginButtonText}>Add Partner</Text>
+        </TouchableOpacity>
     </View>
   );
 };
@@ -100,7 +105,7 @@ const styles = StyleSheet.create({
     //marginVertical: 10,
   },
   button: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#577399',
     padding: 10,
     marginHorizontal: 5,
     borderRadius: 5,
@@ -109,6 +114,17 @@ const styles = StyleSheet.create({
   buttonText: {
     //color: 'white',
     fontSize: 16,
+  },
+  loginButton: {
+    backgroundColor: '#577399',
+    paddingVertical: 10,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  loginButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

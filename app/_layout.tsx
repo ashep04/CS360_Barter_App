@@ -17,9 +17,13 @@ export default function RootLayout() {
 }
 
 function AppContent() {
-  const { isLoggedIn, role } = useAuth();
+  const { isLoggedIn, role, username, userId, password } = useAuth();
   console.log("isLoggedIn:", isLoggedIn); // Debugging line
   console.log("role:", role); // Debugging line
+  console.log("username: ", username);
+  console.log("userId: ", userId);
+  console.log("password: ", password);
+
   const router = useRouter();
 
     return (

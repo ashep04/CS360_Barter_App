@@ -182,7 +182,7 @@ export default function HomeScreen() {
               </View> */}
               
               {/* Transactions Column */}
-              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
+              {/* <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
                 <Text style={[styles.titleText, { color: currentTheme.text }]}>Transactions</Text>
                 {loading ? (
                   <Text style={{ color: currentTheme.text }}>Loading...</Text>
@@ -195,57 +195,9 @@ export default function HomeScreen() {
                     </View>
                   ))
                 )}
-              </View>
+              </View> */}
 
-              {/* Settings Column */}
-              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
-                <Text style={[styles.titleText, { color: currentTheme.text }]}>Settings</Text>
-                <TouchableOpacity style={styles.button} onPress={toggleTheme}>
-                  <Text style={[styles.buttonText, { color: currentTheme.text }]}>Change Theme</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
-                  <Text style={[styles.buttonText, { color: currentTheme.text }]}>Change Password</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
-                  <Text style={[styles.buttonText, { color: currentTheme.text }]}>Log Out</Text>
-                </TouchableOpacity>
-              </View>
             </View>
-
-              {/* Additional Row with 4 Columns */}
-              <View style={styles.row}>
-              {/* Service Data Columns */}
-              {/* {additionalData.map((item, index) => (
-                <View key={item.id} style={[styles.column, { backgroundColor: currentTheme.background }]}>
-                  <Text style={[styles.titleText, { color: currentTheme.text }]}>{item.title}</Text>
-                  <Text style={{ color: currentTheme.text }}>Description: {item.description}</Text>
-                  <Text style={{ color: currentTheme.text }}>Status: {item.status}</Text>
-                </View>
-              ))} */}
-            </View>
-
-            {/* Additional Row with Four Columns */}
-            <View style={styles.row}>
-              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
-                <Text style={[styles.titleText, { color: currentTheme.text }]}>Settings</Text>
-                <Text style={{ color: currentTheme.text }}>Additional Column 1</Text>
-              </View>
-              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
-                <Text style={[styles.titleText, { color: currentTheme.text }]}>Settings</Text>
-                <Text style={{ color: currentTheme.text }}>Additional Column 2</Text>
-              </View>
-            </View>
-            <View style={styles.row}>
-              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
-                <Text style={[styles.titleText, { color: currentTheme.text }]}>Settings</Text>
-                <Text style={{ color: currentTheme.text }}>Additional Column 3</Text>
-              </View>
-              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
-                <Text style={[styles.titleText, { color: currentTheme.text }]}>Settings</Text>
-                <Text style={{ color: currentTheme.text }}>Additional Column 4</Text>
-              </View>
-            </View>
-
           </ScrollView>
         </View>
       </ParallaxScrollView>
