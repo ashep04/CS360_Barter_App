@@ -38,7 +38,7 @@ app.post('/deleteUser', (req, res) => {
 
   // Step 1: Delete the related partnerships first
   const deletePartnershipsQuery = 'DELETE FROM partnerships WHERE partner_id = ?';
-  
+
   db.execute(deletePartnershipsQuery, [id], (err) => {
     if (err) {
       console.error(err);
@@ -47,13 +47,13 @@ app.post('/deleteUser', (req, res) => {
 
     // Step 2: After successful deletion of related partnerships, delete the user
     const deleteUserQuery = 'DELETE FROM accounts WHERE id = ?';
-    
+
     db.execute(deleteUserQuery, [id], (err, results) => {
       if (err) {
         console.error(err);
         return res.status(500).send('Failed to delete user');
       }
-      
+
       // Send success response after user deletion
       res.status(200).send('User deleted successfully');
     });
@@ -61,6 +61,24 @@ app.post('/deleteUser', (req, res) => {
 });
 
 // In your server.js file
+app.post('/addCommodity', (req, res) => {
+  const { id, commodity_name, commodity_type, quantity, value } = req.body;
+
+  const query = `
+    INSERT INTO commodities
+    (id, commodity_name, commodity_type, quantity, value)
+    VALUES (?, ?, ?, ?, ?)
+  `;
+
+  db.execute(query, [id, commodity_name, commodity_type, quantity, value], (err, results) => {
+    if (err) {
+      console.error('Database query error: ', err);
+      return res.status(500).send('Database query error');
+    }
+    res.status(200).send('Commodity added successfully');
+  });
+});
+
 app.post('/addExchange', (req, res) => {
   const { 
     seller_id, buyer_id, seller_partner_id, buyer_partner_id, 
