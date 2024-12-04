@@ -25,7 +25,7 @@ const LoginUser = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const {currentTheme, toggleTheme} = useTheme();
-  const { logout, login, setRole, setIsLoggedIn} = useAuth();
+  const { logout, login, setRole, setIsLoggedIn, isLoggedIn} = useAuth();
   const [loginError, setLoginError] = useState('');
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
@@ -65,7 +65,18 @@ const LoginUser = () => {
       // navigation.navigate('index');
     }
 
+  const LoggedIn = async () => {
+    if (isLoggedIn)
+    {
+      const account = dataAccounts.find(
+        (acc) => (acc.id === userId || acc.username === username) && acc.password === password
+      );
+    }
+  };
+
   const handleLogin = async () => {
+
+
     setLoginError('');
     if (!userId || !username || !password) {
       Alert.alert('Error', 'All fields are required');
@@ -79,7 +90,7 @@ const LoginUser = () => {
       if (account) {
         //setRole(account.role);
         //setIsLoggedIn(true);
-        login(account.role);
+        login(account.role, account.username, account.id, account.password);
         setLoginError('Login successful!');
         Alert.alert('Success', 'Login Successful');
         setPassword('');
@@ -133,13 +144,13 @@ const LoginUser = () => {
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.loginButton} onPress={handleLogout}>
+        {/* <TouchableOpacity style={styles.loginButton} onPress={handleLogout}>
           <Text style={styles.loginButtonText}>Temporary Logout</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
-        <Text style={styles.navigation}>
+        <Text style={[styles.navigation, { color: currentTheme.text }]}>
           Not a member?{' '}
-          <Text style={{ color: 'blue' }} onPress={() => navigation.navigate('signup')}>
+          <Text style={{ fontWeight: 'bold', color: '#577399' }} onPress={() => navigation.navigate('signup')}>
             Signup
           </Text>
         </Text>
@@ -183,7 +194,7 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     borderColor: 'gray',
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     borderWidth: 1,
     marginBottom: 20,
     paddingHorizontal: 10,

@@ -198,11 +198,9 @@ useFocusEffect(
           <Text style={styles.signupButtonText}>Signup</Text>
         </TouchableOpacity>
 
-
-
-        <Text style={styles.navigation}>
-          Already have an account?{' '}
-          <Text style={{ color: 'blue' }} onPress={() => navigation.navigate('index')}>
+        <Text style={[styles.navigation, { color: currentTheme.text }]}>
+        Already have an account?{' '}
+        <Text style={{ fontWeight: 'bold', color: '#577399' }} onPress={() => navigation.navigate('index')}>
             Login Here
           </Text>
         </Text>
@@ -239,7 +237,7 @@ const styles = StyleSheet.create({
     input: {
       height: 40,
       borderColor: 'gray',
-      backgroundColor: '#fff',
+      // backgroundColor: '#fff',
       borderWidth: 1,
       marginBottom: 20,
       paddingHorizontal: 10,

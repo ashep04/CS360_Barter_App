@@ -1,32 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import axios from 'axios';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 import axiosInstance from '../app/api/apiConfig'; // Import the Axios configuration
+import { setRefreshFlag } from '@/utils/refresh';
+import { useAuth } from '@/components/AuthContext';
+import { getRefreshFlag, clearRefreshFlag } from '@/utils/refresh';
 
 const AddPartnership = () => {
-  const [userId, setUserId] = useState('');
+  const { isLoggedIn, role, username, userId, password } = useAuth();
+  const [userId2, setUserId] = useState('');
   const [partnerId, setPartnerId] = useState('');
   const [partnerStatus, setPartnerStatus] = useState('pending');  // Default status is 'pending'
   const {currentTheme, toggleTheme} = useTheme();
 
 
   const handleAddPartnership = async () => {
-    if (!userId || !partnerId) {
-      Alert.alert('Error', 'Both User ID and Partner ID are required');
+    setPartnerStatus('accepted');
+    if (!partnerId) {
+      Alert.alert('Error', 'Partner ID are required');
       return;
+    }
+    if (role === 'admin')
+    {
+
+    }
+    else
+    {
+      setUserId(userId);
     }
 
     try {
       const response = await axiosInstance.post('/addPartnership', {
-        id: userId,
+        id: userId2,
         partner_id: partnerId,
         status: partnerStatus,
       });
-
+      await setRefreshFlag(true); // Set refresh flag
       Alert.alert('Success', 'Partnership added successfully');
-      setUserId('');
+      // setUserId('');
       setPartnerId('');
+      
     } catch (error) {
       Alert.alert('Error', 'Failed to add partnership');
     }
@@ -44,12 +58,22 @@ const AddPartnership = () => {
 
   return (
     <View style={styles.container}>
-      <TextInput
+      {/* <TextInput
         style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter User ID"
         value={userId}
         onChangeText={setUserId}
-      />
+      /> */}
+
+    {role === 'admin' && (
+            <TextInput
+            style={[styles.input, { color: currentTheme.text }]}
+            placeholder="Enter User ID"
+              value={userId2}
+              onChangeText={setUserId}
+            />
+          )}
+
       <TextInput
         style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter Partner ID"
@@ -57,22 +81,10 @@ const AddPartnership = () => {
         onChangeText={setPartnerId}
       />
 
-      <View style={styles.statusContainer}>
-        <Text
-        style={[styles.input, { color: currentTheme.text }]}>
-          Status: {partnerStatus}
-        </Text>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={setStatusPending}>
-            <Text style={[styles.buttonText, {color: currentTheme.text}]}>Pending</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={setStatusAccepted}>
-            <Text style={[styles.buttonText, {color: currentTheme.text}]}>Accepted</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
 
-      <Button title="Add Partnership" onPress={handleAddPartnership} />
+      <TouchableOpacity style={styles.loginButton} onPress={handleAddPartnership}>
+          <Text style={styles.loginButtonText}>Add Partner</Text>
+        </TouchableOpacity>
     </View>
   );
 };
@@ -100,7 +112,7 @@ const styles = StyleSheet.create({
     //marginVertical: 10,
   },
   button: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#577399',
     padding: 10,
     marginHorizontal: 5,
     borderRadius: 5,
@@ -109,6 +121,17 @@ const styles = StyleSheet.create({
   buttonText: {
     //color: 'white',
     fontSize: 16,
+  },
+  loginButton: {
+    backgroundColor: '#577399',
+    paddingVertical: 10,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  loginButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

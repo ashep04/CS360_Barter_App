@@ -9,6 +9,12 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 import axiosInstance from '../../../api/apiConfig'; // Import the Axios configuration
 
+
+import AddPartnership from '@/database_components/AddPartnership'; // Import the AddUser component
+import DeletePartnership from '@/database_components/DeletePartnership'; // Import the AddUser component
+import DeleteUser from '@/database_components/DeleteUser'; // Import the AddUser component
+
+
 export default function HomeScreen() {
   
   const [dataAccounts, setDataAccounts] = useState([]);
@@ -141,8 +147,9 @@ export default function HomeScreen() {
                     </View>
                   ))
                 )}
+                <DeleteUser/>
               </View>
-
+              </View>
               {/* Partnerships Column */}
               {/* <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
                 <Text style={[styles.titleText, { color: currentTheme.text }]}>Partnerships</Text>
@@ -152,6 +159,7 @@ export default function HomeScreen() {
                   </View>
                 ))}
               </View> */}
+            <View style={styles.row }>
 
               {/* Partnerships Column */}
               <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
@@ -166,6 +174,8 @@ export default function HomeScreen() {
                     </View>
                   ))
                 )}
+              <AddPartnership />
+              <DeletePartnership/>
               </View>
             </View>
 
@@ -182,7 +192,7 @@ export default function HomeScreen() {
               </View> */}
               
               {/* Transactions Column */}
-              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
+              {/* <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
                 <Text style={[styles.titleText, { color: currentTheme.text }]}>Transactions</Text>
                 {loading ? (
                   <Text style={{ color: currentTheme.text }}>Loading...</Text>
@@ -195,57 +205,9 @@ export default function HomeScreen() {
                     </View>
                   ))
                 )}
-              </View>
+              </View> */}
 
-              {/* Settings Column */}
-              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
-                <Text style={[styles.titleText, { color: currentTheme.text }]}>Settings</Text>
-                <TouchableOpacity style={styles.button} onPress={toggleTheme}>
-                  <Text style={[styles.buttonText, { color: currentTheme.text }]}>Change Theme</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
-                  <Text style={[styles.buttonText, { color: currentTheme.text }]}>Change Password</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
-                  <Text style={[styles.buttonText, { color: currentTheme.text }]}>Log Out</Text>
-                </TouchableOpacity>
-              </View>
             </View>
-
-              {/* Additional Row with 4 Columns */}
-              <View style={styles.row}>
-              {/* Service Data Columns */}
-              {/* {additionalData.map((item, index) => (
-                <View key={item.id} style={[styles.column, { backgroundColor: currentTheme.background }]}>
-                  <Text style={[styles.titleText, { color: currentTheme.text }]}>{item.title}</Text>
-                  <Text style={{ color: currentTheme.text }}>Description: {item.description}</Text>
-                  <Text style={{ color: currentTheme.text }}>Status: {item.status}</Text>
-                </View>
-              ))} */}
-            </View>
-
-            {/* Additional Row with Four Columns */}
-            <View style={styles.row}>
-              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
-                <Text style={[styles.titleText, { color: currentTheme.text }]}>Settings</Text>
-                <Text style={{ color: currentTheme.text }}>Additional Column 1</Text>
-              </View>
-              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
-                <Text style={[styles.titleText, { color: currentTheme.text }]}>Settings</Text>
-                <Text style={{ color: currentTheme.text }}>Additional Column 2</Text>
-              </View>
-            </View>
-            <View style={styles.row}>
-              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
-                <Text style={[styles.titleText, { color: currentTheme.text }]}>Settings</Text>
-                <Text style={{ color: currentTheme.text }}>Additional Column 3</Text>
-              </View>
-              <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
-                <Text style={[styles.titleText, { color: currentTheme.text }]}>Settings</Text>
-                <Text style={{ color: currentTheme.text }}>Additional Column 4</Text>
-              </View>
-            </View>
-
           </ScrollView>
         </View>
       </ParallaxScrollView>

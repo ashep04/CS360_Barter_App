@@ -2,24 +2,35 @@ import { Stack, Tabs } from "expo-router";
 import { StyleSheet, SafeAreaView, StatusBar, View } from 'react-native';
 import { ThemeProvider, useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 import { AuthProvider, useAuth } from '@/components/AuthContext';
-import React from 'react';
 import { useRouter } from "expo-router";
+// import { RefreshProvider } from '@/components/RefreshContext';
+
+
+import React, { createContext, useContext, useState } from 'react';
+
+const RefreshContext = createContext(true);
 
 export default function RootLayout() {
 
   return (
+    // <RefreshProvider>
     <ThemeProvider>
       <AuthProvider>
         <AppContent/>
       </AuthProvider>
     </ThemeProvider>
+    // </RefreshProvider>
   );
 }
 
 function AppContent() {
-  const { isLoggedIn, role } = useAuth();
+  const { isLoggedIn, role, username, userId, password } = useAuth();
   console.log("isLoggedIn:", isLoggedIn); // Debugging line
   console.log("role:", role); // Debugging line
+  console.log("username: ", username);
+  console.log("userId: ", userId);
+  console.log("password: ", password);
+
   const router = useRouter();
 
     return (
@@ -35,69 +46,9 @@ function AppContent() {
       <Stack.Screen name="signup" options={{ title: 'Signup' , headerShown: false}} />
     </Stack>
 
-      // <Stack screenOptions={{ headerShown: false }}>
-      //   {!isLoggedIn ? (
-      //     <>
-      //       {/* Stack based navigation for login */}
-      //       <Stack.Screen name="home" options={{ title: 'Login' }} />
-      //       {/* <Stack.Screen name="signup" options={{ title: 'Sign Up' }} /> */}
-      //     </>
-      //   ) : (
-      //     <>
-      //       {/* Once logged in, switch to Tabs navigation */}
-      //       <Tabs screenOptions={{ headerShown: false }}>
-      //         {/* Show shared tabs */}
-      //         <Tabs.Screen name="(sharedTabs)" options={{ headerShown: false }} />
-              
-      //         {/* Role-specific tabs */}
-      //         {role === 'BarterBuy' && (
-      //           <Tabs.Screen name="(buyTabs)" options={{ headerShown: false }} />
-      //         )}
-  
-      //         {role === 'BarterSell' && (
-      //           <Tabs.Screen name="(sellTabs)" options={{ headerShown: false }} />
-      //         )}
-      //       </Tabs>
-      //     </>
-      //   )}
-      // </Stack>
-
-
-
-    // <Stack screenOptions={{ headerShown: false }}>
-    //   <Stack.Screen name="(startTabs)" />
-    //   <Stack.Screen name="(sharedTabs)" />
-    //   <Stack.Screen name="(buyTabs)" />
-    //   <Stack.Screen name="(sellTabs)" />
-    // </Stack>
     );
 }
-  // return (
-  //   <Stack screenOptions={{ headerShown: false }}>
-
-  //     {/* Show login screen if not logged in */}
-  //     {!isLoggedIn && (
-  //       <Stack.Screen name="login" />
-  //     )}
-
-  //     {/* Show tabs based on the role if logged in */}
-  //     {isLoggedIn && role === 'BarterBuy' && (
-  //       <Tabs.Screen name="(buyTabs)" options={{ headerShown: false }} />
-  //     )}
-      
-  //     {isLoggedIn && role === 'BarterSell' && (
-  //       <Tabs.Screen name="(sellTabs)" options={{ headerShown: false }} />
-  //     )}
-
-  //     {/* Optionally, if you have a shared set of tabs for logged-in users */}
-  //     {isLoggedIn && role !== 'BarterBuy' && role !== 'BarterSell' && (
-  //       <Tabs.Screen name="(sharedTabs)" options={{ headerShown: false }} />
-  //     )}
-      
-  //     {/* Optionally, handle other screens */}
-  //     {/* <Stack.Screen name="signup" /> */}
-  //   </Stack>
-  // );
+ 
 
 const styles = StyleSheet.create({
   container: {

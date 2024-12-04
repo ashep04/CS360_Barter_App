@@ -33,6 +33,34 @@ app.post('/addUser', (req, res) => {
     });
 });
 
+app.post('/deleteUser', (req, res) => {
+  const { id } = req.body;
+
+  // Step 1: Delete the related partnerships first
+  const deletePartnershipsQuery = 'DELETE FROM partnerships WHERE partner_id = ?';
+
+  db.execute(deletePartnershipsQuery, [id], (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Failed to delete related partnerships');
+    }
+
+    // Step 2: After successful deletion of related partnerships, delete the user
+    const deleteUserQuery = 'DELETE FROM accounts WHERE id = ?';
+
+    db.execute(deleteUserQuery, [id], (err, results) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Failed to delete user');
+      }
+
+      // Send success response after user deletion
+      res.status(200).send('User deleted successfully');
+    });
+  });
+});
+
+// In your server.js file
 app.post('/addCommodity', (req, res) => {
   const { id, commodity_name, commodity_type, quantity, value } = req.body;
 
@@ -52,19 +80,19 @@ app.post('/addCommodity', (req, res) => {
 });
 
 app.post('/addExchange', (req, res) => {
-  const {
-    seller_id, buyer_id, seller_partner_id, buyer_partner_id,
-    commodity_id, offer_commodity_id, commodity_value, hash_code, status
+  const { 
+    seller_id, buyer_id, seller_partner_id, buyer_partner_id, 
+    commodity_id, offer_commodity_id, commodity_value, hash_code, status 
   } = req.body;
 
   const query = `
-    INSERT INTO exchanges
-    (seller_id, buyer_id, seller_partner_id, buyer_partner_id, commodity_id,
+    INSERT INTO exchanges 
+    (seller_id, buyer_id, seller_partner_id, buyer_partner_id, commodity_id, 
     offer_commodity_id, commodity_value, hash_code, status)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
-  db.execute(query, [seller_id, buyer_id, seller_partner_id, buyer_partner_id, commodity_id,
+  db.execute(query, [seller_id, buyer_id, seller_partner_id, buyer_partner_id, commodity_id, 
     offer_commodity_id, commodity_value, hash_code, status], (err, results) => {
     if (err) {
       console.error('Database query error: ', err);
@@ -73,6 +101,7 @@ app.post('/addExchange', (req, res) => {
     res.status(200).send('Exchange added successfully');
   });
 });
+
 
 app.post('/addTransaction', (req, res) => {
   const { exchange_id, hash_code } = req.body;
@@ -117,6 +146,25 @@ app.post('/addPartnership', (req, res) => {
     });
 });
 
+app.post('/deletePartnership', (req, res) => {
+  const { id, partner_id } = req.body;
+
+  // SQL query to delete the partnership where the user ID and partner ID match
+  const query = 'DELETE FROM partnerships WHERE id = ? AND partner_id = ?';
+  db.execute(query, [id, partner_id], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Database query error');
+    }
+
+    if (results.affectedRows > 0) {
+      res.status(200).send('Partnership deleted successfully');
+    } else {
+      res.status(404).send('Partnership deleted');
+    }
+  });
+});
+
 //
 // END POST
 //------------------------------------------------------------------------
@@ -125,6 +173,25 @@ app.post('/addPartnership', (req, res) => {
 // GET
 //
 app.get('/getAccounts', async (req, res) => {
+    try {
+      db.execute('SELECT * FROM accounts', (err, results) => {
+        if (err) {
+          console.error('Database query error: ', err);
+          // Send an error response to the client
+          res.status(500).json({ error: 'Database query error' });
+        } else {
+          console.log(results);
+          // Send the results as a response to the client
+          res.status(200).json(results);
+        }
+      });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
+  app.get('/getAccounts', async (req, res) => {
     try {
       db.execute('SELECT * FROM accounts', (err, results) => {
         if (err) {
