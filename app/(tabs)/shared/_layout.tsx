@@ -9,6 +9,7 @@ import { useRouter } from "expo-router";
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Tabs } from 'expo-router';
+import Ionicons from 'react-native-vector-icons/Ionicons'; // Import Icon Library
 
 export default function SharedTabsLayout() {
   const { isLoggedIn, role } = useAuth();
@@ -40,11 +41,31 @@ export default function SharedTabsLayout() {
         tabBarInactiveTintColor: currentTheme.tabIconDefault, // Inactive tab color
       }}
       >
-      <Tabs.Screen name="index" options={{ title: 'Home' }} />
-      <Tabs.Screen name="settings" options={{ title: 'Dashboard' }} />
-      <Tabs.Screen name="buy" options={{ title: 'Buy' }} />
-      <Tabs.Screen name="sell" options={{ title: 'Sell', }} />
-      <Tabs.Screen name="admin" options={{ title: 'Admin', }} />
+      <Tabs.Screen name="index" options={{ title: 'Home',
+      tabBarIcon: ({ color, size }) => (
+        <Ionicons name="home" size={size} color={color} />
+      ),
+       }} />
+      <Tabs.Screen name="settings" options={{ title: 'Dashboard',
+      tabBarIcon: ({ color, size }) => (
+        <Ionicons name="apps-outline" size={size} color={color} />
+      ),
+       }} />
+      <Tabs.Screen name="buy" options={{ title: 'Buy',
+      tabBarIcon: ({ color, size }) => (
+        <Ionicons name="bag-outline" size={size} color={color} />
+      ),
+       }} />
+      <Tabs.Screen name="sell" options={{ title: 'Sell', 
+      tabBarIcon: ({ color, size }) => (
+        <Ionicons name="cash-outline" size={size} color={color} />
+      ),
+      }} />
+      <Tabs.Screen name="admin" options={{ title: 'Admin', 
+      tabBarIcon: ({ color, size }) => (
+        <Ionicons name="person" size={size} color={color} />
+      ),
+      }} />
 
       {/* {role !== 'BarterSell' && (
         <Tabs.Screen
