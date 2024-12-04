@@ -13,6 +13,7 @@ export default function SharedTabsLayout() {
   console.log("role:", role); // Debugging line
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<string>('shared'); // Track the active tab
+  const {currentTheme, toggleTheme} = useTheme();
 
   // return (
   //   <Tabs
@@ -75,14 +76,21 @@ export default function SharedTabsLayout() {
   //     </Tabs>
   //   );
   // } 
+          // screenOptions={{
+        //   tabBarStyle: { display: 'none' },
+        //   headerShown: false, // Hides headers for all screens
+        //   tabBarActiveTintColor: currentTheme.active, // Active tab color
+        //   tabBarInactiveTintColor: currentTheme.inactive, // Inactive tab color
+        // }}
    if (isLoggedIn)
   {
       return (
         <Tabs
         screenOptions={{
-          tabBarStyle: { display: 'none' },
-          headerShown: false, // Hides headers for all screens
-        }}>
+          headerShown: false,
+          tabBarStyle: {display: 'none'},
+        }}
+        >
             <Tabs.Screen
               name="shared"
               options={{ 

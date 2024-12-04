@@ -12,6 +12,7 @@ import { Tabs } from 'expo-router';
 
 export default function SharedTabsLayout() {
   const { isLoggedIn, role } = useAuth();
+  const {currentTheme, toggleTheme} = useTheme();
 
   const router = useRouter();
   const FallbackScreen = () => {
@@ -26,8 +27,17 @@ export default function SharedTabsLayout() {
     return (
       <Tabs
       screenOptions={{
-        //tabBarStyle: { display: 'none' }, // Hides the tab bar
-        headerShown: false, // Disable headers globally for the tabs
+        headerShown: false,
+        tabBarStyle: {display: 'none'},
+        headerStyle: {
+          backgroundColor: currentTheme.background, // Dynamic theme color
+        },
+        headerTintColor: currentTheme.text, // Text color for header
+        tabBarStyle: {
+          backgroundColor: currentTheme.background, // Background of tab bar
+        },
+        tabBarActiveTintColor: currentTheme.tabIconSelected, // Active tab color
+        tabBarInactiveTintColor: currentTheme.tabIconDefault, // Inactive tab color
       }}
       >
       <Tabs.Screen name="index" options={{ title: 'Home' }} />
