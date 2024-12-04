@@ -36,13 +36,27 @@ app.post('/addUser', (req, res) => {
 app.post('/deleteUser', (req, res) => {
   const { id } = req.body;
 
-  const query = 'DELETE FROM users WHERE id = ?';
-  db.execute(query, [id], (err, results) => {
+  // Step 1: Delete the related partnerships first
+  const deletePartnershipsQuery = 'DELETE FROM partnerships WHERE partner_id = ?';
+  
+  db.execute(deletePartnershipsQuery, [id], (err) => {
     if (err) {
       console.error(err);
-      return res.status(500).send('Failed to delete user');
+      return res.status(500).send('Failed to delete related partnerships');
     }
-    res.status(200).send('User deleted successfully');
+
+    // Step 2: After successful deletion of related partnerships, delete the user
+    const deleteUserQuery = 'DELETE FROM accounts WHERE id = ?';
+    
+    db.execute(deleteUserQuery, [id], (err, results) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Failed to delete user');
+      }
+      
+      // Send success response after user deletion
+      res.status(200).send('User deleted successfully');
+    });
   });
 });
 
