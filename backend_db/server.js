@@ -33,21 +33,38 @@ app.post('/addUser', (req, res) => {
     });
 });
 
-// In your server.js file
+app.post('/addCommodity', (req, res) => {
+  const { id, commodity_name, commodity_type, quantity, value } = req.body;
+
+  const query = `
+    INSERT INTO commodities
+    (id, commodity_name, commodity_type, quantity, value)
+    VALUES (?, ?, ?, ?, ?)
+  `;
+
+  db.execute(query, [id, commodity_name, commodity_type, quantity, value], (err, results) => {
+    if (err) {
+      console.error('Database query error: ', err);
+      return res.status(500).send('Database query error');
+    }
+    res.status(200).send('Commodity added successfully');
+  });
+});
+
 app.post('/addExchange', (req, res) => {
-  const { 
-    seller_id, buyer_id, seller_partner_id, buyer_partner_id, 
-    commodity_id, offer_commodity_id, commodity_value, hash_code, status 
+  const {
+    seller_id, buyer_id, seller_partner_id, buyer_partner_id,
+    commodity_id, offer_commodity_id, commodity_value, hash_code, status
   } = req.body;
 
   const query = `
-    INSERT INTO exchanges 
-    (seller_id, buyer_id, seller_partner_id, buyer_partner_id, commodity_id, 
+    INSERT INTO exchanges
+    (seller_id, buyer_id, seller_partner_id, buyer_partner_id, commodity_id,
     offer_commodity_id, commodity_value, hash_code, status)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
-  db.execute(query, [seller_id, buyer_id, seller_partner_id, buyer_partner_id, commodity_id, 
+  db.execute(query, [seller_id, buyer_id, seller_partner_id, buyer_partner_id, commodity_id,
     offer_commodity_id, commodity_value, hash_code, status], (err, results) => {
     if (err) {
       console.error('Database query error: ', err);
@@ -56,7 +73,6 @@ app.post('/addExchange', (req, res) => {
     res.status(200).send('Exchange added successfully');
   });
 });
-
 
 app.post('/addTransaction', (req, res) => {
   const { exchange_id, hash_code } = req.body;
@@ -109,25 +125,6 @@ app.post('/addPartnership', (req, res) => {
 // GET
 //
 app.get('/getAccounts', async (req, res) => {
-    try {
-      db.execute('SELECT * FROM accounts', (err, results) => {
-        if (err) {
-          console.error('Database query error: ', err);
-          // Send an error response to the client
-          res.status(500).json({ error: 'Database query error' });
-        } else {
-          console.log(results);
-          // Send the results as a response to the client
-          res.status(200).json(results);
-        }
-      });
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      res.status(500).json({ error: 'Internal server error' });
-    }
-  });
-
-  app.get('/getAccounts', async (req, res) => {
     try {
       db.execute('SELECT * FROM accounts', (err, results) => {
         if (err) {

@@ -88,7 +88,7 @@ export default function TabTwoScreen() {
         {loginError ? <Text style={styles.errorText}>{loginError}</Text> : null}
 
         <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-          <Text style={styles.loginButtonText}>Signup</Text>
+          <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
 
         <Text style={styles.navigation}>
