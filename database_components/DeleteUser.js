@@ -1,23 +1,34 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Alert, StyleSheet } from 'react-native';
+import { View, TextInput, Alert, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import axios from 'axios';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 import axiosInstance from '../app/api/apiConfig'; // Import the Axios configuration
+import { useAuth } from '@/components/AuthContext';
 
 const DeleteUser = () => {
-  const [userId, setUserId] = useState('');
-  const {currentTheme, toggleTheme} = useTheme();
+  const [userIdToDelete, setUserIdToDelete] = useState('');
+  const [partnerId, setPartnerId] = useState('');
+  const [statusMessage, setStatusMessage] = useState('');
+  const { currentTheme } = useTheme();
+  const { isLoggedIn, role, username, userId, password } = useAuth();
 
   const handleDeleteUser = async () => {
-    if (!userId) {
+
+    if (role !== 'admin') {
+      setUserIdToDelete(userId);
+    }
+
+    if (!userIdToDelete) {
       Alert.alert('Error', 'User ID is required');
       return;
     }
-
     try {
-      const response = await axiosInstance.post('/deleteUser', { id: userId });
+      const response = await axiosInstance.post('/deleteUser', {
+        id: userIdToDelete,
+      });
       Alert.alert('Success', 'User deleted successfully');
-      setUserId('');
+      setStatusMessage('User deleted successfully');
+      setUserIdToDelete('');
     } catch (error) {
       Alert.alert('Error', 'Failed to delete user');
     }
@@ -25,13 +36,31 @@ const DeleteUser = () => {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Enter User ID"
-        value={userId}
-        onChangeText={setUserId}
-      />
-      <Button title="Delete User" onPress={handleDeleteUser} />
+      {/* Display the User ID input only if the user is an admin */}
+      {role === 'admin' && (
+        <>
+        <TextInput
+        style={[styles.input, { color: currentTheme.text }]}
+        placeholder="Enter User ID to delete"
+          value={userIdToDelete}
+          onChangeText={setUserIdToDelete}
+        />
+      <TouchableOpacity style={styles.loginButton} onPress={handleDeleteUser}>
+        <Text style={styles.loginButtonText}>Delete User</Text>
+      </TouchableOpacity>
+      {statusMessage && <Text>Status: {statusMessage}</Text>}
+        </>
+      )}
+
+      {(role === 'BarterBuy' || role === 'BarterSell') && (
+        <>
+        <TouchableOpacity style={styles.loginButton} onPress={handleDeleteUser}>
+        <Text style={styles.loginButtonText}>Delete User</Text>
+      </TouchableOpacity>
+        {statusMessage && <Text>Status: {statusMessage}</Text>}
+      </>
+      )}
+      
     </View>
   );
 };
@@ -48,6 +77,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 15,
     paddingLeft: 8,
+  },
+  loginButton: {
+    backgroundColor: '#577399',
+    paddingVertical: 10,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  loginButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

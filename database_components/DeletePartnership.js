@@ -6,21 +6,30 @@ import axiosInstance from '../app/api/apiConfig'; // Import the Axios configurat
 import { useAuth } from '@/components/AuthContext';
 
 const DeletePartnership = () => {
-  // const [userId, setUserId] = useState('');
+  const [userId2, setUserId] = useState('');
   const [partnerId, setPartnerId] = useState('');
   const [partnershipStatus, setPartnershipStatus] = useState('');
   const {currentTheme, toggleTheme} = useTheme();
   const { isLoggedIn, role, username, userId, password } = useAuth();
+  
 
   const handleDeletePartnership = async () => {
     if (!partnerId) {
       Alert.alert('Error', 'Partner ID are required');
       return;
     }
+    if (role === 'admin')
+    {
+
+    }
+    else
+    {
+      setUserId(userId);
+    }
 
     try {
       const response = await axiosInstance.post('/deletePartnership', {
-        id: userId,
+        id: userId2,
         partner_id: partnerId,
         // params: { id: userId, partner_id: partnerId },
       });
@@ -34,12 +43,14 @@ const DeletePartnership = () => {
 
   return (
     <View style={styles.container}>
-      {/* <TextInput
-        style={styles.input}
-        placeholder="Enter User ID"
-        value={userId}
-        onChangeText={setUserId}
-      /> */}
+      {role === 'admin' && (
+        <TextInput
+        style={[styles.input, { color: currentTheme.text }]}
+          placeholder="Enter User ID"
+          value={userId2}
+          onChangeText={setUserId}
+        />
+      )}
       <TextInput
         style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter Partner ID"

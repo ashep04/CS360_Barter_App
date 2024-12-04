@@ -32,7 +32,7 @@ export default function SharedTabsLayout() {
       >
       <Tabs.Screen name="index" options={{ title: 'Home' }} />
       <Tabs.Screen name="testdb" options={{ title: 'Test DB' }} />
-      <Tabs.Screen name="settings" options={{ title: 'Settings' }} />
+      <Tabs.Screen name="settings" options={{ title: 'Dashboard' }} />
       <Tabs.Screen name="buy" options={{ title: 'Buy' }} />
       <Tabs.Screen name="sell" options={{ title: 'Sell', }} />
       <Tabs.Screen name="admin" options={{ title: 'Admin', }} />
@@ -59,7 +59,7 @@ export default function SharedTabsLayout() {
       >
       <Tabs.Screen name="index" options={{ title: 'Home' }} />
       <Tabs.Screen name="testdb" options={{ title: 'Test DB' }} />
-      <Tabs.Screen name="settings" options={{ title: 'Settings' }} />
+      <Tabs.Screen name="settings" options={{ title: 'Dashboard' }} />
       <Tabs.Screen name="buy" options={{ title: 'Buy' }} />
       <Tabs.Screen name="sell" options={{ title: 'Sell', }} />
       <Tabs.Screen name="admin" options={{ title: 'Admin', }} />
@@ -78,7 +78,7 @@ export default function SharedTabsLayout() {
         >
       <Tabs.Screen name="index" options={{ title: 'Home' }} />
       <Tabs.Screen name="testdb" options={{ title: 'Test DB' }} />
-      <Tabs.Screen name="settings" options={{ title: 'Settings' }} />
+      <Tabs.Screen name="settings" options={{ title: 'Dashboard' }} />
       <Tabs.Screen name="buy" options={{ title: 'Buy' }} />
       <Tabs.Screen name="sell" options={{ title: 'Sell', }} />
       <Tabs.Screen name="admin" options={{ title: 'Admin', }} />

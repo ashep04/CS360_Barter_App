@@ -33,6 +33,19 @@ app.post('/addUser', (req, res) => {
     });
 });
 
+app.post('/deleteUser', (req, res) => {
+  const { id } = req.body;
+
+  const query = 'DELETE FROM users WHERE id = ?';
+  db.execute(query, [id], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Failed to delete user');
+    }
+    res.status(200).send('User deleted successfully');
+  });
+});
+
 // In your server.js file
 app.post('/addExchange', (req, res) => {
   const { 

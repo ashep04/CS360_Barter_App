@@ -9,6 +9,12 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 import axiosInstance from '../../../api/apiConfig'; // Import the Axios configuration
 
+
+import AddPartnership from '@/database_components/AddPartnership'; // Import the AddUser component
+import DeletePartnership from '@/database_components/DeletePartnership'; // Import the AddUser component
+import DeleteUser from '@/database_components/DeleteUser'; // Import the AddUser component
+
+
 export default function HomeScreen() {
   
   const [dataAccounts, setDataAccounts] = useState([]);
@@ -141,8 +147,9 @@ export default function HomeScreen() {
                     </View>
                   ))
                 )}
+                <DeleteUser/>
               </View>
-
+              </View>
               {/* Partnerships Column */}
               {/* <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
                 <Text style={[styles.titleText, { color: currentTheme.text }]}>Partnerships</Text>
@@ -152,6 +159,7 @@ export default function HomeScreen() {
                   </View>
                 ))}
               </View> */}
+            <View style={styles.row }>
 
               {/* Partnerships Column */}
               <View style={[styles.column, { backgroundColor: currentTheme.background }]}>
@@ -166,6 +174,8 @@ export default function HomeScreen() {
                     </View>
                   ))
                 )}
+              <AddPartnership />
+              <DeletePartnership/>
               </View>
             </View>
 

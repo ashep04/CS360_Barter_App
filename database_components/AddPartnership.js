@@ -9,7 +9,7 @@ import { getRefreshFlag, clearRefreshFlag } from '@/utils/refresh';
 
 const AddPartnership = () => {
   const { isLoggedIn, role, username, userId, password } = useAuth();
-  // const [userId, setUserId] = useState('');
+  const [userId2, setUserId] = useState('');
   const [partnerId, setPartnerId] = useState('');
   const [partnerStatus, setPartnerStatus] = useState('pending');  // Default status is 'pending'
   const {currentTheme, toggleTheme} = useTheme();
@@ -21,10 +21,18 @@ const AddPartnership = () => {
       Alert.alert('Error', 'Partner ID are required');
       return;
     }
+    if (role === 'admin')
+    {
+
+    }
+    else
+    {
+      setUserId(userId);
+    }
 
     try {
       const response = await axiosInstance.post('/addPartnership', {
-        id: userId,
+        id: userId2,
         partner_id: partnerId,
         status: partnerStatus,
       });
@@ -56,6 +64,16 @@ const AddPartnership = () => {
         value={userId}
         onChangeText={setUserId}
       /> */}
+
+    {role === 'admin' && (
+            <TextInput
+            style={[styles.input, { color: currentTheme.text }]}
+            placeholder="Enter User ID"
+              value={userId2}
+              onChangeText={setUserId}
+            />
+          )}
+
       <TextInput
         style={[styles.input, { color: currentTheme.text }]}
         placeholder="Enter Partner ID"
