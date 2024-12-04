@@ -49,6 +49,8 @@ const DeletePartnership = () => {
           placeholder="Enter User ID"
           value={userId2}
           onChangeText={setUserId}
+          placeholderTextColor={currentTheme.text}
+
         />
       )}
       <TextInput
@@ -56,6 +58,8 @@ const DeletePartnership = () => {
         placeholder="Enter Partner ID"
         value={partnerId}
         onChangeText={setPartnerId}
+        placeholderTextColor={currentTheme.text}
+
       />
       <TouchableOpacity style={styles.loginButton} onPress={handleDeletePartnership}>
           <Text style={styles.loginButtonText}>Delete Partner</Text>

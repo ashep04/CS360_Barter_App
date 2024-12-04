@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
       width: '80%', // Adjust the width of the modal
       padding: 20, // Add padding for spacing inside the modal
       borderRadius: 10, // Rounded corners
-      backgroundColor: '#fff', // Background color of the modal
+      // backgroundColor: '#fff', // Background color of the modal
       shadowColor: '#000', // Shadow for iOS
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.25,
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     margin: 10,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     borderRadius: 8,
   },
   actionButton: {
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
   },
   postTitle: {
     fontSize: 18,

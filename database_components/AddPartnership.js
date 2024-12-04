@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import axios from 'axios';
-import { useTheme } from '@/components/ThemeContext'; // Import the useTheme hook
 import axiosInstance from '../app/api/apiConfig'; // Import the Axios configuration
 import { setRefreshFlag } from '@/utils/refresh';
 import { useAuth } from '@/components/AuthContext';
 import { getRefreshFlag, clearRefreshFlag } from '@/utils/refresh';
+import { useTheme } from '@/components/ThemeContext';
 
 const AddPartnership = () => {
+  const { currentTheme, toggleTheme } = useTheme();
+
   const { isLoggedIn, role, username, userId, password } = useAuth();
   const [userId2, setUserId] = useState('');
   const [partnerId, setPartnerId] = useState('');
   const [partnerStatus, setPartnerStatus] = useState('pending');  // Default status is 'pending'
-  const {currentTheme, toggleTheme} = useTheme();
 
 
   const handleAddPartnership = async () => {
@@ -71,6 +72,8 @@ const AddPartnership = () => {
             placeholder="Enter User ID"
               value={userId2}
               onChangeText={setUserId}
+              placeholderTextColor={currentTheme.text}
+
             />
           )}
 
@@ -79,6 +82,8 @@ const AddPartnership = () => {
         placeholder="Enter Partner ID"
         value={partnerId}
         onChangeText={setPartnerId}
+        placeholderTextColor={currentTheme.text}
+
       />
 
 

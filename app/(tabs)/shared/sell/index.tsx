@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import uuid from 'react-native-uuid';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import CryptoJS from 'crypto-js';
-import { StyleSheet, Image, TextInput, Button, View, Text, FlatList } from 'react-native';
+import { StyleSheet, Image, TextInput, Button, View, Text, FlatList, TouchableOpacity} from 'react-native';
 import axiosInstance from '../../../api/apiConfig'; // Import the Axios configuration
 
 import { Collapsible } from '@/components/Collapsible';
@@ -149,11 +149,17 @@ const addPost = async () => {
     placeholderTextColor={currentTheme.text}
     keyboardType="numeric"
   />
-  <Button
+  {/* <Button
     title="Post"
     backgroundColor='#577399'
     onPress={() => addPost()}  // Pass the user id and form values to addPost
-  />
+  /> */}
+    <TouchableOpacity
+      style={[styles.button, { marginTop: 20 }]}
+      onPress={() => addPost()}
+  >
+    <Text style={styles.buttonText}>POST</Text>
+  </TouchableOpacity>
 </View>
 
 
@@ -209,7 +215,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 8,
     marginVertical: 4,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
   },
   postItem: {
     padding: 16,
@@ -225,5 +231,16 @@ const styles = StyleSheet.create({
   },
   baseText: {
     fontSize: 14,
+  },
+  button: {
+    padding: 10,
+    backgroundColor: '#577399',
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });

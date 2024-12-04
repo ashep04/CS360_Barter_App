@@ -46,6 +46,8 @@ const DeleteUser = () => {
         placeholder="Enter User ID to delete"
           value={userIdToDelete}
           onChangeText={setUserIdToDelete}
+          placeholderTextColor={currentTheme.text}
+
         />
       <TouchableOpacity style={styles.loginButton} onPress={handleDeleteUser}>
         <Text style={styles.loginButtonText}>Delete User</Text>
@@ -57,7 +59,9 @@ const DeleteUser = () => {
       {(role === 'BarterBuy' || role === 'BarterSell') && (
         <>
         <TouchableOpacity style={styles.loginButton} onPress={handleDeleteUser}>
-        <Text style={styles.loginButtonText}>Delete User</Text>
+        <Text style={styles.loginButtonText} placeholderTextColor={currentTheme.text}>
+          Delete User
+          </Text>
       </TouchableOpacity>
         {statusMessage && <Text>Status: {statusMessage}</Text>}
       </>
