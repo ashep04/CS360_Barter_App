@@ -151,6 +151,7 @@ const addPost = async () => {
   />
   <Button
     title="Post"
+    backgroundColor='#577399'
     onPress={() => addPost()}  // Pass the user id and form values to addPost
   />
 </View>
