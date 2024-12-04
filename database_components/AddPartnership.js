@@ -81,20 +81,6 @@ const AddPartnership = () => {
         onChangeText={setPartnerId}
       />
 
-      <View style={styles.statusContainer}>
-        {/* <Text
-        style={[styles.input, { color: currentTheme.text }]}>
-          Status: {partnerStatus}
-        </Text> */}
-        <View style={styles.buttonContainer}>
-          {/* <TouchableOpacity style={styles.button} onPress={setStatusPending}>
-            <Text style={[styles.buttonText, {color: currentTheme.text}]}>Pending</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={setStatusAccepted}>
-            <Text style={[styles.buttonText, {color: currentTheme.text}]}>Accepted</Text>
-          </TouchableOpacity> */}
-        </View>
-      </View>
 
       <TouchableOpacity style={styles.loginButton} onPress={handleAddPartnership}>
           <Text style={styles.loginButtonText}>Add Partner</Text>

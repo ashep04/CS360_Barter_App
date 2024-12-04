@@ -29,6 +29,8 @@ const DeleteUser = () => {
       Alert.alert('Success', 'User deleted successfully');
       setStatusMessage('User deleted successfully');
       setUserIdToDelete('');
+      if (role !== 'admin')
+      {navigation.navigate('')}
     } catch (error) {
       Alert.alert('Error', 'Failed to delete user');
     }
