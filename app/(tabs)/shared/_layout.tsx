@@ -22,7 +22,7 @@ export default function SharedTabsLayout() {
     );
   };
 
-  if (isLoggedIn && role === 'BarterBuy') {
+  if (isLoggedIn) {
     return (
       <Tabs
       screenOptions={{
@@ -31,7 +31,6 @@ export default function SharedTabsLayout() {
       }}
       >
       <Tabs.Screen name="index" options={{ title: 'Home' }} />
-      <Tabs.Screen name="testdb" options={{ title: 'Test DB' }} />
       <Tabs.Screen name="settings" options={{ title: 'Dashboard' }} />
       <Tabs.Screen name="buy" options={{ title: 'Buy' }} />
       <Tabs.Screen name="sell" options={{ title: 'Sell', }} />
@@ -48,43 +47,41 @@ export default function SharedTabsLayout() {
     </Tabs>
     );
   }
-  else if (isLoggedIn && role === 'BarterSell')
-  {
-    return (
-      <Tabs
-      screenOptions={{
-        //tabBarStyle: { display: 'none' }, // Hides the tab bar
-        headerShown: false, // Disable headers globally for the tabs
-      }}
-      >
-      <Tabs.Screen name="index" options={{ title: 'Home' }} />
-      <Tabs.Screen name="testdb" options={{ title: 'Test DB' }} />
-      <Tabs.Screen name="settings" options={{ title: 'Dashboard' }} />
-      <Tabs.Screen name="buy" options={{ title: 'Buy' }} />
-      <Tabs.Screen name="sell" options={{ title: 'Sell', }} />
-      <Tabs.Screen name="admin" options={{ title: 'Admin', }} />
+  // else if (isLoggedIn && role === 'BarterSell')
+  // {
+  //   return (
+  //     <Tabs
+  //     screenOptions={{
+  //       //tabBarStyle: { display: 'none' }, // Hides the tab bar
+  //       headerShown: false, // Disable headers globally for the tabs
+  //     }}
+  //     >
+  //     <Tabs.Screen name="index" options={{ title: 'Home' }} />
+  //     <Tabs.Screen name="settings" options={{ title: 'Dashboard' }} />
+  //     <Tabs.Screen name="buy" options={{ title: 'Buy' }} />
+  //     <Tabs.Screen name="sell" options={{ title: 'Sell', }} />
+  //     <Tabs.Screen name="admin" options={{ title: 'Admin', }} />
 
-    </Tabs>
-    );
-  }
-  else if (isLoggedIn && role === 'admin')
-    {
-      return (
-        <Tabs
-        screenOptions={{
-          //tabBarStyle: { display: 'none' }, // Hides the tab bar
-          headerShown: false, // Disable headers globally for the tabs
-        }}
-        >
-      <Tabs.Screen name="index" options={{ title: 'Home' }} />
-      <Tabs.Screen name="testdb" options={{ title: 'Test DB' }} />
-      <Tabs.Screen name="settings" options={{ title: 'Dashboard' }} />
-      <Tabs.Screen name="buy" options={{ title: 'Buy' }} />
-      <Tabs.Screen name="sell" options={{ title: 'Sell', }} />
-      <Tabs.Screen name="admin" options={{ title: 'Admin', }} />
-      </Tabs>
-      );
-    }
+  //   </Tabs>
+  //   );
+  // }
+  // else if (isLoggedIn && role === 'admin')
+  //   {
+  //     return (
+  //       <Tabs
+  //       screenOptions={{
+  //         //tabBarStyle: { display: 'none' }, // Hides the tab bar
+  //         headerShown: false, // Disable headers globally for the tabs
+  //       }}
+  //       >
+  //     <Tabs.Screen name="index" options={{ title: 'Home' }} />
+  //     <Tabs.Screen name="settings" options={{ title: 'Dashboard' }} />
+  //     <Tabs.Screen name="buy" options={{ title: 'Buy' }} />
+  //     <Tabs.Screen name="sell" options={{ title: 'Sell', }} />
+  //     <Tabs.Screen name="admin" options={{ title: 'Admin', }} />
+  //     </Tabs>
+  //     );
+  //   }
 
     return <FallbackScreen/>;
 

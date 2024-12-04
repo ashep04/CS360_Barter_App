@@ -75,7 +75,7 @@ export default function SharedTabsLayout() {
   //     </Tabs>
   //   );
   // } 
-   if (isLoggedIn && role === 'BarterBuy')
+   if (isLoggedIn)
   {
       return (
         <Tabs
@@ -113,82 +113,82 @@ export default function SharedTabsLayout() {
       </Tabs>
     );
   }
-  else if (isLoggedIn && role === 'BarterSell') {
-    return (
-      <Tabs
-      screenOptions={{
-        tabBarStyle: { display: 'none' },
-        headerShown: false, // Hides headers for all screens
-      }}>
-          <Tabs.Screen
-            name="shared"
-            options={{ 
-              title: 'Shared', 
-              //tabBarStyle: { display: undefined } 
-            }}
-          />
-          <Tabs.Screen
-            name="buy"
-            options={{ 
-              title: 'Buy',  
-            }} // Tab bar is shown here
-          />
+  // else if (isLoggedIn && role === 'BarterSell') {
+  //   return (
+  //     <Tabs
+  //     screenOptions={{
+  //       tabBarStyle: { display: 'none' },
+  //       headerShown: false, // Hides headers for all screens
+  //     }}>
+  //         <Tabs.Screen
+  //           name="shared"
+  //           options={{ 
+  //             title: 'Shared', 
+  //             //tabBarStyle: { display: undefined } 
+  //           }}
+  //         />
+  //         <Tabs.Screen
+  //           name="buy"
+  //           options={{ 
+  //             title: 'Buy',  
+  //           }} // Tab bar is shown here
+  //         />
 
-          <Tabs.Screen
-          name="sell"
-          options={{
-            title: 'Sell',
-            //tabBarStyle: { display: undefined },
-          }}
-          />
-          <Tabs.Screen
-          name="admin"
-          options={{
-            title: 'Admin',
-          }}
-          />
+  //         <Tabs.Screen
+  //         name="sell"
+  //         options={{
+  //           title: 'Sell',
+  //           //tabBarStyle: { display: undefined },
+  //         }}
+  //         />
+  //         <Tabs.Screen
+  //         name="admin"
+  //         options={{
+  //           title: 'Admin',
+  //         }}
+  //         />
           
-    </Tabs>
-  );
-  }
-  else if (isLoggedIn && role === 'admin') {
-    return (
-      <Tabs
-      screenOptions={{
-        tabBarStyle: { display: 'none' },
-        headerShown: false, // Hides headers for all screens
-      }}>
-          <Tabs.Screen
-            name="shared"
-            options={{ 
-              title: 'Shared', 
-              //tabBarStyle: { display: undefined } 
-            }}
-          />
-          <Tabs.Screen
-            name="buy"
-            options={{ 
-              title: 'Buy',  
-            }} // Tab bar is shown here
-          />
+  //   </Tabs>
+  // );
+  // }
+  // else if (isLoggedIn && role === 'admin') {
+  //   return (
+  //     <Tabs
+  //     screenOptions={{
+  //       tabBarStyle: { display: 'none' },
+  //       headerShown: false, // Hides headers for all screens
+  //     }}>
+  //         <Tabs.Screen
+  //           name="shared"
+  //           options={{ 
+  //             title: 'Shared', 
+  //             //tabBarStyle: { display: undefined } 
+  //           }}
+  //         />
+  //         <Tabs.Screen
+  //           name="buy"
+  //           options={{ 
+  //             title: 'Buy',  
+  //           }} // Tab bar is shown here
+  //         />
 
-          <Tabs.Screen
-          name="sell"
-          options={{
-            title: 'Sell',
-            //tabBarStyle: { display: undefined },
-          }}
-          />
-          <Tabs.Screen
-          name="admin"
-          options={{
-            title: 'Admin',
-          }}
-          />
+  //         <Tabs.Screen
+  //         name="sell"
+  //         options={{
+  //           title: 'Sell',
+  //           //tabBarStyle: { display: undefined },
+  //         }}
+  //         />
+  //         <Tabs.Screen
+  //         name="admin"
+  //         options={{
+  //           title: 'Admin',
+  //         }}
+  //         />
           
-    </Tabs>
-  );
-  }
+  //   </Tabs>
+  // );
+  // }
 
 
 
