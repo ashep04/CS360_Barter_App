@@ -33,6 +33,19 @@ app.post('/addUser', (req, res) => {
     });
 });
 
+app.post('/deleteUser', (req, res) => {
+  const { id } = req.body;
+
+  const query = 'DELETE FROM users WHERE id = ?';
+  db.execute(query, [id], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Failed to delete user');
+    }
+    res.status(200).send('User deleted successfully');
+  });
+});
+
 // In your server.js file
 app.post('/addExchange', (req, res) => {
   const { 
@@ -99,6 +112,25 @@ app.post('/addPartnership', (req, res) => {
             res.status(200).send('Partnership added successfully');
         }
     });
+});
+
+app.post('/deletePartnership', (req, res) => {
+  const { id, partner_id } = req.body;
+
+  // SQL query to delete the partnership where the user ID and partner ID match
+  const query = 'DELETE FROM partnerships WHERE id = ? AND partner_id = ?';
+  db.execute(query, [id, partner_id], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Database query error');
+    }
+
+    if (results.affectedRows > 0) {
+      res.status(200).send('Partnership deleted successfully');
+    } else {
+      res.status(404).send('Partnership deleted');
+    }
+  });
 });
 
 //
